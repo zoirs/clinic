@@ -13,6 +13,8 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -45,6 +47,9 @@ public class Area implements Serializable {
     @JsonDeserialize(using = CustomDateTimeDeserializer.class)
     @Column(name = "last_updated", nullable = false)
     private DateTime lastUpdated;
+
+    @ManyToOne
+    private City city;
 
     public Long getId() {
         return id;
@@ -84,6 +89,14 @@ public class Area implements Serializable {
 
     public void setLastUpdated(DateTime lastUpdated) {
         this.lastUpdated = lastUpdated;
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
     }
 
     @Override

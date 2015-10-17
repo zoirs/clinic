@@ -1,5 +1,6 @@
 package com.clinic.web.rest;
 
+import com.clinic.sync.area.SyncArea;
 import com.clinic.sync.city.SyncCity;
 import com.clinic.sync.metro.SyncMetro;
 import com.clinic.sync.speciality.SyncSpeciality;
@@ -33,6 +34,8 @@ public class SyncResource {
     SyncStreet syncStreet;
     @Autowired
     SyncSpeciality syncSpeciality;
+    @Autowired
+    SyncArea syncArea;
 
     @RequestMapping(value = "/sync/{data}",
         method = RequestMethod.GET,
@@ -52,6 +55,9 @@ public class SyncResource {
                 break;
             case "speciality":
                 syncSpeciality.sync();
+                break;
+            case "area":
+                syncArea.sync();
                 break;
         }
         return new ResponseEntity<>(HttpStatus.OK);

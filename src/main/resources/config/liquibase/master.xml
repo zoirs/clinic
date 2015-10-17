@@ -6,7 +6,7 @@
 
     <include file="classpath:config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20151013150207_added_entity_City.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20151013174124_added_entity_Area.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20151017203220_added_entity_Area.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20151013175903_added_entity_Metro.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20151017131310_added_entity_Speciality.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20151017132040_added_entity_Diagnostic.xml" relativeToChangelogFile="false"/>

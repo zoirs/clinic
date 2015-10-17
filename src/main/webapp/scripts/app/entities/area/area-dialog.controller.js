@@ -1,10 +1,11 @@
 'use strict';
 
 angular.module('clinicApp').controller('AreaDialogController',
-    ['$scope', '$stateParams', '$modalInstance', 'entity', 'Area',
-        function($scope, $stateParams, $modalInstance, entity, Area) {
+    ['$scope', '$stateParams', '$modalInstance', 'entity', 'Area', 'City',
+        function($scope, $stateParams, $modalInstance, entity, Area, City) {
 
         $scope.area = entity;
+        $scope.citys = City.query();
         $scope.load = function(id) {
             Area.get({id : id}, function(result) {
                 $scope.area = result;

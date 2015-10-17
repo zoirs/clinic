@@ -5,8 +5,11 @@ import com.clinic.domain.Area;
 import com.clinic.repository.AreaRepository;
 import com.clinic.repository.search.AreaSearchRepository;
 import com.clinic.web.rest.util.HeaderUtil;
+import com.clinic.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -84,9 +87,11 @@ public class AreaResource {
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public List<Area> getAllAreas() {
-        log.debug("REST request to get all Areas");
-        return areaRepository.findAll();
+    public ResponseEntity<List<Area>> getAllAreas(Pageable pageable)
+        throws URISyntaxException {
+        Page<Area> page = areaRepository.findAll(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/areas");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
     /**

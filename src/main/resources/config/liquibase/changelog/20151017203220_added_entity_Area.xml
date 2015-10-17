@@ -17,7 +17,7 @@
     <!--
         Added the entity Area.
     -->
-    <changeSet id="20151013174124" author="jhipster">
+    <changeSet id="20151017203220" author="jhipster">
         <createTable tableName="area">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}" >
                 <constraints primaryKey="true" nullable="false"/>
@@ -30,9 +30,16 @@
             </column>
             <column name="docdoc_id" type="bigint"/>
             <column name="last_updated" type="timestamp"/>
+            <column name="city_id" type="bigint"/>
         </createTable>
         <dropDefaultValue tableName="area" columnName="last_updated" columnDataType="datetime"/>
 
         
+        <addForeignKeyConstraint baseColumnNames="city_id"
+                                 baseTableName="area"
+                                 constraintName="fk_area_city_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="city"/>
+
     </changeSet>
 </databaseChangeLog>

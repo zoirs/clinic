@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('clinicApp')
-    .controller('AreaDetailController', function ($scope, $rootScope, $stateParams, entity, Area) {
+    .controller('AreaDetailController', function ($scope, $rootScope, $stateParams, entity, Area, City) {
         $scope.area = entity;
         $scope.load = function (id) {
             Area.get({id: id}, function(result) {

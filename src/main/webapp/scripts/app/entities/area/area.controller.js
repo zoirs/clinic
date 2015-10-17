@@ -1,12 +1,18 @@
 'use strict';
 
 angular.module('clinicApp')
-    .controller('AreaController', function ($scope, Area, AreaSearch) {
+    .controller('AreaController', function ($scope, Area, AreaSearch, ParseLinks) {
         $scope.areas = [];
+        $scope.page = 0;
         $scope.loadAll = function() {
-            Area.query(function(result) {
-               $scope.areas = result;
+            Area.query({page: $scope.page, size: 20}, function(result, headers) {
+                $scope.links = ParseLinks.parse(headers('link'));
+                $scope.areas = result;
             });
+        };
+        $scope.loadPage = function(page) {
+            $scope.page = page;
+            $scope.loadAll();
         };
         $scope.loadAll();
 
