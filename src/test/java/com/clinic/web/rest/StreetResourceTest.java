@@ -52,8 +52,9 @@ public class StreetResourceTest {
     private static final String UPDATED_NAME = "BBBBB";
     private static final String DEFAULT_ALIAS = "AAAAA";
     private static final String UPDATED_ALIAS = "BBBBB";
-    private static final String DEFAULT_DOCDOC_ID = "AAAAA";
-    private static final String UPDATED_DOCDOC_ID = "BBBBB";
+
+    private static final Long DEFAULT_DOCDOC_ID = 1L;
+    private static final Long UPDATED_DOCDOC_ID = 2L;
 
     private static final DateTime DEFAULT_LAST_UPDATE = new DateTime(0L, DateTimeZone.UTC);
     private static final DateTime UPDATED_LAST_UPDATE = new DateTime(DateTimeZone.UTC).withMillisOfSecond(0);
@@ -166,7 +167,7 @@ public class StreetResourceTest {
                 .andExpect(jsonPath("$.[*].id").value(hasItem(street.getId().intValue())))
                 .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
                 .andExpect(jsonPath("$.[*].alias").value(hasItem(DEFAULT_ALIAS.toString())))
-                .andExpect(jsonPath("$.[*].docdocId").value(hasItem(DEFAULT_DOCDOC_ID.toString())))
+                .andExpect(jsonPath("$.[*].docdocId").value(hasItem(DEFAULT_DOCDOC_ID.intValue())))
                 .andExpect(jsonPath("$.[*].lastUpdate").value(hasItem(DEFAULT_LAST_UPDATE_STR)));
     }
 
@@ -183,7 +184,7 @@ public class StreetResourceTest {
             .andExpect(jsonPath("$.id").value(street.getId().intValue()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
             .andExpect(jsonPath("$.alias").value(DEFAULT_ALIAS.toString()))
-            .andExpect(jsonPath("$.docdocId").value(DEFAULT_DOCDOC_ID.toString()))
+            .andExpect(jsonPath("$.docdocId").value(DEFAULT_DOCDOC_ID.intValue()))
             .andExpect(jsonPath("$.lastUpdate").value(DEFAULT_LAST_UPDATE_STR));
     }
 

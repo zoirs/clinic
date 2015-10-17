@@ -67,7 +67,7 @@ class StreetGatlingTest extends Simulation {
             .exec(http("Create new street")
             .post("/api/streets")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "name":"SAMPLE_TEXT", "alias":"SAMPLE_TEXT", "docdocId":"SAMPLE_TEXT", "lastUpdate":"2020-01-01T00:00:00.000Z"}""")).asJSON
+            .body(StringBody("""{"id":null, "name":"SAMPLE_TEXT", "alias":"SAMPLE_TEXT", "docdocId":null, "lastUpdate":"2020-01-01T00:00:00.000Z"}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_street_url")))
             .pause(10)

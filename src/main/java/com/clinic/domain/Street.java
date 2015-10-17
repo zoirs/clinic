@@ -40,7 +40,7 @@ public class Street implements Serializable {
     private String alias;
     
     @Column(name = "docdoc_id")
-    private String docdocId;
+    private Long docdocId;
     
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     @JsonSerialize(using = CustomDateTimeSerializer.class)
@@ -75,11 +75,11 @@ public class Street implements Serializable {
         this.alias = alias;
     }
 
-    public String getDocdocId() {
+    public Long getDocdocId() {
         return docdocId;
     }
 
-    public void setDocdocId(String docdocId) {
+    public void setDocdocId(Long docdocId) {
         this.docdocId = docdocId;
     }
 

@@ -28,7 +28,7 @@
             <column name="alias" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
-            <column name="docdoc_id" type="varchar(255)"/>
+            <column name="docdoc_id" type="bigint"/>
             <column name="last_update" type="timestamp"/>
             <column name="city_id" type="bigint"/>
         </createTable>

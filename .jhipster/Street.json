@@ -28,7 +28,7 @@
         {
             "fieldId": 3,
             "fieldName": "docdocId",
-            "fieldType": "String"
+            "fieldType": "Long"
         },
         {
             "fieldId": 4,

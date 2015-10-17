@@ -45,10 +45,10 @@ public class SyncMetro extends SyncService {
 
     private void syncForCity(City city) {
         Map<String, Object> map = get(url + city.getDocdocId());
-        List<Map<String, String>> cityList = (List<Map<String, String>>) map.get(listName);
+        List<Map<String, String>> metroList = (List<Map<String, String>>) map.get(listName);
 
-        if (cityList != null && !cityList.isEmpty()) {
-            for (final Map<String, String> cityMap : cityList) {
+        if (metroList != null && !metroList.isEmpty()) {
+            for (final Map<String, String> cityMap : metroList) {
                 Future submit = service.submit(() -> migrate(cityMap, city));
                 try {
                     submit.get();

@@ -2,6 +2,7 @@ package com.clinic.web.rest;
 
 import com.clinic.sync.city.SyncCity;
 import com.clinic.sync.metro.SyncMetro;
+import com.clinic.sync.street.SyncStreet;
 import com.codahale.metrics.annotation.Timed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,6 +28,8 @@ public class SyncResource {
     SyncCity syncCity;
     @Autowired
     SyncMetro syncMetro;
+    @Autowired
+    SyncStreet syncStreet;
 
     @RequestMapping(value = "/sync/{data}",
         method = RequestMethod.GET,
@@ -40,6 +43,9 @@ public class SyncResource {
                 break;
             case "metro":
                 syncMetro.sync();
+                break;
+            case "street":
+                syncStreet.sync();
                 break;
         }
         return new ResponseEntity<>(HttpStatus.OK);
