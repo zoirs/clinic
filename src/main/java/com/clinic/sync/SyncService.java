@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-abstract class SyncService {
+abstract public class SyncService {
 
     static final private int countOfAttempts = 4;
     private final Logger logger = LoggerFactory.getLogger(SyncService.class);

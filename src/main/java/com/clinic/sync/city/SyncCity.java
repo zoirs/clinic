@@ -1,8 +1,8 @@
-package com.clinic.sync;
+package com.clinic.sync.city;
 
 import com.clinic.domain.City;
 import com.clinic.repository.CityRepository;
-import org.apache.commons.lang3.StringUtils;
+import com.clinic.sync.SyncService;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +24,7 @@ public class SyncCity extends SyncService {
 
     private final static Logger logger = LoggerFactory.getLogger(SyncCity.class);
     private final static String url = "https://back.docdoc.ru/api/rest/1.0.5/json/city/";
+    private final static String listName = "CityList";
     private ExecutorService service = Executors.newCachedThreadPool();
 
     @Autowired
@@ -33,7 +34,7 @@ public class SyncCity extends SyncService {
         logger.info("Синхронизация городов. Начало: " + DateTime.now());
 
         Map<String, Object> map = get(url);
-        List<Map<String, String>> cityList = (List<Map<String, String>>) map.get("CityList");
+        List<Map<String, String>> cityList = (List<Map<String, String>>) map.get(listName);
 
         for (final Map<String, String> cityMap : cityList) {
             Future submit = service.submit(() -> migrate(cityMap));
@@ -47,7 +48,7 @@ public class SyncCity extends SyncService {
         logger.info("Синхронизация городов. Конец: " + DateTime.now());
     }
 
-    public void migrate(Map<String, String> cityMap) {
+    private void migrate(Map<String, String> cityMap) {
 
         final String name = cityMap.get(CityParams.name.key);
         final String alias = cityMap.get(CityParams.alias.key);

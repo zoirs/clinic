@@ -1,6 +1,7 @@
 package com.clinic.web.rest;
 
-import com.clinic.sync.SyncCity;
+import com.clinic.sync.city.SyncCity;
+import com.clinic.sync.metro.SyncMetro;
 import com.codahale.metrics.annotation.Timed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,14 +25,23 @@ public class SyncResource {
 
     @Autowired
     SyncCity syncCity;
+    @Autowired
+    SyncMetro syncMetro;
 
     @RequestMapping(value = "/sync/{data}",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Void> getCity(@PathVariable String data) {
+    public ResponseEntity<Void> sync(@PathVariable String data) {
         log.debug("REST request to sync ", data);
-        syncCity.sync();
+        switch (data){
+            case "city":
+                syncCity.sync();
+                break;
+            case "metro":
+                syncMetro.sync();
+                break;
+        }
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
