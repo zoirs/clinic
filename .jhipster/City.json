@@ -1,0 +1,50 @@
+{
+    "relationships": [],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "alias",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "latitude",
+            "fieldType": "Float",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 4,
+            "fieldName": "longitude",
+            "fieldType": "Float",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 6,
+            "fieldName": "docdocId",
+            "fieldType": "Long"
+        },
+        {
+            "fieldId": 7,
+            "fieldName": "lastUpdated",
+            "fieldType": "DateTime"
+        }
+    ],
+    "changelogDate": "20151013150207",
+    "dto": "no",
+    "pagination": "no"
+}

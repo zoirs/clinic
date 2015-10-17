@@ -15,10 +15,10 @@ spring:
         active: dev
     datasource:
         driver-class-name: org.postgresql.ds.PGSimpleDataSource
-        url:
+        url: jdbc:postgresql://localhost:5432/clinic
         name: clinic
         username: clinic
-        password:
+        password: clinic
     jpa:
         database-platform: com.clinic.domain.util.FixedPostgreSQL82Dialect
         database: POSTGRESQL

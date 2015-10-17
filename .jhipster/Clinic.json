@@ -1,0 +1,196 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "city",
+            "otherEntityName": "city",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "street",
+            "otherEntityName": "street",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipId": 3,
+            "relationshipName": "area",
+            "otherEntityName": "area",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipId": 4,
+            "relationshipName": "diagnostic",
+            "otherEntityName": "diagnostic",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipId": 5,
+            "relationshipName": "metro",
+            "otherEntityName": "metro",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipId": 6,
+            "relationshipName": "speciality",
+            "otherEntityName": "speciality",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "shortName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "alias",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 4,
+            "fieldName": "url",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 5,
+            "fieldName": "longitude",
+            "fieldType": "Float"
+        },
+        {
+            "fieldId": 6,
+            "fieldName": "latitude",
+            "fieldType": "Float"
+        },
+        {
+            "fieldId": 7,
+            "fieldName": "streetName",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 8,
+            "fieldName": "house",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 9,
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 10,
+            "fieldName": "weekdaysOpen",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 11,
+            "fieldName": "weekendOpen",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 12,
+            "fieldName": "shortDescription",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 13,
+            "fieldName": "isDiagnostic",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldId": 14,
+            "fieldName": "isClinic",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldId": 15,
+            "fieldName": "isDoctor",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldId": 16,
+            "fieldName": "phoneContact",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 17,
+            "fieldName": "phoneAppointmen",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 18,
+            "fieldName": "phoneReplacement",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 19,
+            "fieldName": "logoPath",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 20,
+            "fieldName": "logo",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 21,
+            "fieldName": "scheduleStateOnline",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldId": 22,
+            "fieldName": "email",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 23,
+            "fieldName": "minPrice",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldId": 24,
+            "fieldName": "maxPrice",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldId": 25,
+            "fieldName": "docdocId",
+            "fieldType": "Long"
+        },
+        {
+            "fieldId": 26,
+            "fieldName": "lastUpdated",
+            "fieldType": "DateTime",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20151017155717",
+    "dto": "no",
+    "pagination": "pager"
+}

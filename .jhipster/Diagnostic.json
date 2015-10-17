@@ -1,0 +1,49 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "diagnostic",
+            "otherEntityName": "diagnostic",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "diagnostic"
+        },
+        {
+            "relationshipId": 1,
+            "relationshipName": "diagnostic",
+            "otherEntityName": "diagnostic",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "alias",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "docdocId",
+            "fieldType": "Long"
+        },
+        {
+            "fieldId": 4,
+            "fieldName": "lastUpdated",
+            "fieldType": "DateTime"
+        }
+    ],
+    "changelogDate": "20151017132040",
+    "dto": "no",
+    "pagination": "no"
+}

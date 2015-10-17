@@ -1,0 +1,152 @@
+<div>
+    <h2>Clinics</h2>
+    <jh-alert></jh-alert>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <button class="btn btn-primary" ui-sref="clinic.new">
+                    <span class="glyphicon glyphicon-flash"></span> <span>Create a new Clinic</span>
+                </button>
+            </div>
+            <div class="col-md-8">
+                <form name="searchForm" class="form-inline">
+                    <div class="form-group">
+                        <input type="text" class="form-control" ng-model="searchQuery" id="searchQuery" placeholder="query">
+                    </div>
+                    <button class="btn btn-info" ng-click="search()"><span class="glyphicon glyphicon-search"></span> <span>Search a Clinic</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deleteClinicConfirmation">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="deleteForm" ng-submit="confirmDelete(clinic.id)">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                ng-click="clear()">&times;</button>
+                        <h4 class="modal-title">Confirm delete operation</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete this Clinic?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+                        </button>
+                        <button type="submit" ng-disabled="deleteForm.$invalid" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span>Delete</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>ShortName</th>
+                    <th>Alias</th>
+                    <th>Url</th>
+                    <th>Longitude</th>
+                    <th>Latitude</th>
+                    <th>StreetName</th>
+                    <th>House</th>
+                    <th>Description</th>
+                    <th>WeekdaysOpen</th>
+                    <th>WeekendOpen</th>
+                    <th>ShortDescription</th>
+                    <th>IsDiagnostic</th>
+                    <th>IsClinic</th>
+                    <th>IsDoctor</th>
+                    <th>PhoneContact</th>
+                    <th>PhoneAppointmen</th>
+                    <th>PhoneReplacement</th>
+                    <th>LogoPath</th>
+                    <th>Logo</th>
+                    <th>ScheduleStateOnline</th>
+                    <th>Email</th>
+                    <th>MinPrice</th>
+                    <th>MaxPrice</th>
+                    <th>DocdocId</th>
+                    <th>LastUpdated</th>
+                    <th>city</th>
+                    <th>street</th>
+                    <th>area</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="clinic in clinics track by clinic.id">
+                    <td><a ui-sref="clinic.detail({id:clinic.id})">{{clinic.id}}</a></td>
+                    <td>{{clinic.name}}</td>
+                    <td>{{clinic.shortName}}</td>
+                    <td>{{clinic.alias}}</td>
+                    <td>{{clinic.url}}</td>
+                    <td>{{clinic.longitude}}</td>
+                    <td>{{clinic.latitude}}</td>
+                    <td>{{clinic.streetName}}</td>
+                    <td>{{clinic.house}}</td>
+                    <td>{{clinic.description}}</td>
+                    <td>{{clinic.weekdaysOpen}}</td>
+                    <td>{{clinic.weekendOpen}}</td>
+                    <td>{{clinic.shortDescription}}</td>
+                    <td>{{clinic.isDiagnostic}}</td>
+                    <td>{{clinic.isClinic}}</td>
+                    <td>{{clinic.isDoctor}}</td>
+                    <td>{{clinic.phoneContact}}</td>
+                    <td>{{clinic.phoneAppointmen}}</td>
+                    <td>{{clinic.phoneReplacement}}</td>
+                    <td>{{clinic.logoPath}}</td>
+                    <td>{{clinic.logo}}</td>
+                    <td>{{clinic.scheduleStateOnline}}</td>
+                    <td>{{clinic.email}}</td>
+                    <td>{{clinic.minPrice}}</td>
+                    <td>{{clinic.maxPrice}}</td>
+                    <td>{{clinic.docdocId}}</td>
+                    <td>{{clinic.lastUpdated}}</td>
+                    <td>
+                        <a ui-sref="city.detail({id:clinic.city.id})">{{clinic.city.id}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="street.detail({id:clinic.street.id})">{{clinic.street.id}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="area.detail({id:clinic.area.id})">{{clinic.area.id}}</a>
+                    </td>
+                    <td>
+                        <button type="submit"
+                                ui-sref="clinic.detail({id:clinic.id})"
+                                class="btn btn-info btn-sm">
+                            <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span> View</span>
+                        </button>
+                        <button type="submit"
+                                ui-sref="clinic.edit({id:clinic.id})"
+                                class="btn btn-primary btn-sm">
+                            <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span> Edit</span>
+                        </button>
+                        <button type="submit"
+                                ng-click="delete(clinic.id)"
+                                class="btn btn-danger btn-sm">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span> Delete</span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <nav>
+            <ul class="pager">
+                <li ng-show="links['first'] >= 0" ng-click="loadPage(links['first'])"><a href="#">&lt;&lt;</a></li>
+                <li ng-show="page > 0" ng-click="loadPage(links['prev'] || 0)"><a href="#">&lt;</a></li>
+                <li ng-show="links['next']" ng-click="loadPage(links['next'])"><a href="#">&gt;</a></li>
+                <li ng-show="links['last'] > 0" ng-click="loadPage(links['last'])"><a href="#">&gt;&gt;</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+{
+    "relationships": [],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "alias",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        } ,
+        {
+            "fieldId": 3,
+            "fieldName": "docdocId",
+            "fieldType": "Long"
+        },
+        {
+            "fieldId": 4,
+            "fieldName": "lastUpdated",
+            "fieldType": "DateTime"
+        }
+    ],
+    "changelogDate": "20151013174124",
+    "dto": "no",
+    "pagination": "no"
+}

@@ -1,0 +1,240 @@
+
+<form name="editForm" role="form" novalidate ng-submit="save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myClinicLabel">Create or edit a Clinic</h4>
+    </div>
+    <div class="modal-body">
+        <jh-alert-error></jh-alert-error>
+        <div class="form-group">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="clinic.id" readonly>
+        </div>
+        <div class="form-group">
+            <label for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                    ng-model="clinic.name"
+                    required>
+            <div ng-show="editForm.name.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.name.$error.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="field_shortName">ShortName</label>
+            <input type="text" class="form-control" name="shortName" id="field_shortName"
+                    ng-model="clinic.shortName"
+                    required>
+            <div ng-show="editForm.shortName.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.shortName.$error.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="field_alias">Alias</label>
+            <input type="text" class="form-control" name="alias" id="field_alias"
+                    ng-model="clinic.alias"
+                    required>
+            <div ng-show="editForm.alias.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.alias.$error.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="field_url">Url</label>
+            <input type="text" class="form-control" name="url" id="field_url"
+                    ng-model="clinic.url"
+                    >
+        </div>
+        <div class="form-group">
+            <label for="field_longitude">Longitude</label>
+            <input type="number" class="form-control" name="longitude" id="field_longitude"
+                    ng-model="clinic.longitude"
+                    >
+        </div>
+        <div class="form-group">
+            <label for="field_latitude">Latitude</label>
+            <input type="number" class="form-control" name="latitude" id="field_latitude"
+                    ng-model="clinic.latitude"
+                    >
+        </div>
+        <div class="form-group">
+            <label for="field_streetName">StreetName</label>
+            <input type="text" class="form-control" name="streetName" id="field_streetName"
+                    ng-model="clinic.streetName"
+                    >
+        </div>
+        <div class="form-group">
+            <label for="field_house">House</label>
+            <input type="text" class="form-control" name="house" id="field_house"
+                    ng-model="clinic.house"
+                    >
+        </div>
+        <div class="form-group">
+            <label for="field_description">Description</label>
+            <input type="text" class="form-control" name="description" id="field_description"
+                    ng-model="clinic.description"
+                    >
+        </div>
+        <div class="form-group">
+            <label for="field_weekdaysOpen">WeekdaysOpen</label>
+            <input type="text" class="form-control" name="weekdaysOpen" id="field_weekdaysOpen"
+                    ng-model="clinic.weekdaysOpen"
+                    >
+        </div>
+        <div class="form-group">
+            <label for="field_weekendOpen">WeekendOpen</label>
+            <input type="text" class="form-control" name="weekendOpen" id="field_weekendOpen"
+                    ng-model="clinic.weekendOpen"
+                    >
+        </div>
+        <div class="form-group">
+            <label for="field_shortDescription">ShortDescription</label>
+            <input type="text" class="form-control" name="shortDescription" id="field_shortDescription"
+                    ng-model="clinic.shortDescription"
+                    >
+        </div>
+        <div class="form-group">
+            <label for="field_isDiagnostic">IsDiagnostic</label>
+            <input type="checkbox" class="form-control" name="isDiagnostic" id="field_isDiagnostic"
+                    ng-model="clinic.isDiagnostic"
+                    >
+        </div>
+        <div class="form-group">
+            <label for="field_isClinic">IsClinic</label>
+            <input type="checkbox" class="form-control" name="isClinic" id="field_isClinic"
+                    ng-model="clinic.isClinic"
+                    >
+        </div>
+        <div class="form-group">
+            <label for="field_isDoctor">IsDoctor</label>
+            <input type="checkbox" class="form-control" name="isDoctor" id="field_isDoctor"
+                    ng-model="clinic.isDoctor"
+                    >
+        </div>
+        <div class="form-group">
+            <label for="field_phoneContact">PhoneContact</label>
+            <input type="text" class="form-control" name="phoneContact" id="field_phoneContact"
+                    ng-model="clinic.phoneContact"
+                    >
+        </div>
+        <div class="form-group">
+            <label for="field_phoneAppointmen">PhoneAppointmen</label>
+            <input type="text" class="form-control" name="phoneAppointmen" id="field_phoneAppointmen"
+                    ng-model="clinic.phoneAppointmen"
+                    >
+        </div>
+        <div class="form-group">
+            <label for="field_phoneReplacement">PhoneReplacement</label>
+            <input type="text" class="form-control" name="phoneReplacement" id="field_phoneReplacement"
+                    ng-model="clinic.phoneReplacement"
+                    >
+        </div>
+        <div class="form-group">
+            <label for="field_logoPath">LogoPath</label>
+            <input type="text" class="form-control" name="logoPath" id="field_logoPath"
+                    ng-model="clinic.logoPath"
+                    >
+        </div>
+        <div class="form-group">
+            <label for="field_logo">Logo</label>
+            <input type="text" class="form-control" name="logo" id="field_logo"
+                    ng-model="clinic.logo"
+                    >
+        </div>
+        <div class="form-group">
+            <label for="field_scheduleStateOnline">ScheduleStateOnline</label>
+            <input type="checkbox" class="form-control" name="scheduleStateOnline" id="field_scheduleStateOnline"
+                    ng-model="clinic.scheduleStateOnline"
+                    >
+        </div>
+        <div class="form-group">
+            <label for="field_email">Email</label>
+            <input type="text" class="form-control" name="email" id="field_email"
+                    ng-model="clinic.email"
+                    >
+        </div>
+        <div class="form-group">
+            <label for="field_minPrice">MinPrice</label>
+            <input type="number" class="form-control" name="minPrice" id="field_minPrice"
+                    ng-model="clinic.minPrice"
+                    >
+        </div>
+        <div class="form-group">
+            <label for="field_maxPrice">MaxPrice</label>
+            <input type="number" class="form-control" name="maxPrice" id="field_maxPrice"
+                    ng-model="clinic.maxPrice"
+                    >
+        </div>
+        <div class="form-group">
+            <label for="field_docdocId">DocdocId</label>
+            <input type="number" class="form-control" name="docdocId" id="field_docdocId"
+                    ng-model="clinic.docdocId"
+                    >
+        </div>
+        <div class="form-group">
+            <label for="field_lastUpdated">LastUpdated</label>
+            <input type="datetime-local" class="form-control" name="lastUpdated" id="field_lastUpdated"
+                    ng-model="clinic.lastUpdated" ng-model-options="{timezone: 'UTC'}"
+                    required>
+            <div ng-show="editForm.lastUpdated.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.lastUpdated.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.lastUpdated.$error.datetimelocal">
+                    This field should be a date and time.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="field_city">city</label>
+            <select class="form-control" id="field_city" name="city" ng-model="clinic.city" ng-options="city as city.id for city in citys track by city.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_street">street</label>
+            <select class="form-control" id="field_street" name="street" ng-model="clinic.street" ng-options="street as street.id for street in streets track by street.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_area">area</label>
+            <select class="form-control" id="field_area" name="area" ng-model="clinic.area" ng-options="area as area.id for area in areas track by area.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_diagnostic">diagnostic</label>
+            <select class="form-control" id="field_diagnostic" multiple name="diagnostic" ng-model="clinic.diagnostics" ng-options="diagnostic as diagnostic.id for diagnostic in diagnostics track by diagnostic.id"></select>
+        </div>
+        <div class="form-group">
+            <label for="field_metro">metro</label>
+            <select class="form-control" id="field_metro" multiple name="metro" ng-model="clinic.metros" ng-options="metro as metro.id for metro in metros track by metro.id"></select>
+        </div>
+        <div class="form-group">
+            <label for="field_speciality">speciality</label>
+            <select class="form-control" id="field_speciality" multiple name="speciality" ng-model="clinic.specialitys" ng-options="speciality as speciality.id for speciality in specialitys track by speciality.id"></select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || editForm.$submitted" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

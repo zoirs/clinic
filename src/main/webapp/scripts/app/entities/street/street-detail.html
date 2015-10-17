@@ -1,0 +1,62 @@
+
+<div>
+    <h2><span>Street</span> {{street.id}}</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Field</th>
+                <th>Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <span>Name</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{street.name}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Alias</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{street.alias}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>DocdocId</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{street.docdocId}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>LastUpdate</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{street.lastUpdate}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>city</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="city.detail({id:street.city.id})">{{street.city.id}}</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+</div>
