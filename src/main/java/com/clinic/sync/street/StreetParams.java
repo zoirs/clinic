@@ -1,6 +1,6 @@
 package com.clinic.sync.street;
 
-public enum StreetParams {
+enum StreetParams {
 
     id("Id", "id"),
     name("Title", "Название"),

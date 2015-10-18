@@ -1,6 +1,6 @@
 package com.clinic.sync.city;
 
-public enum CityParams {
+enum CityParams {
 //    выходные
     id("Id", "id"),
     name("Name", "Название города"),

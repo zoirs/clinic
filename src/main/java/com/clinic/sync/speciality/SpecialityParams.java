@@ -1,6 +1,6 @@
 package com.clinic.sync.speciality;
 
-public enum SpecialityParams {
+enum SpecialityParams {
     id("Id", "id"),
     name("Name", "Название"),
     alias("Alias", "строка Наименование станции для ЧПУ"),

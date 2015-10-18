@@ -1,6 +1,6 @@
 package com.clinic.sync.metro;
 
-public enum MetroParams {
+enum MetroParams {
     id("Id", "id"),
     name("Name", "Название"),
     alias("Alias", "строка Наименование станции для ЧПУ"),
