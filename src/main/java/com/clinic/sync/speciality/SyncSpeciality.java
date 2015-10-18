@@ -2,11 +2,9 @@ package com.clinic.sync.speciality;
 
 import com.clinic.domain.City;
 import com.clinic.domain.Speciality;
-import com.clinic.domain.Street;
 import com.clinic.repository.CityRepository;
 import com.clinic.repository.SpecialityRepository;
 import com.clinic.sync.SyncService;
-import com.clinic.sync.street.StreetParams;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

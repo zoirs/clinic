@@ -60,7 +60,6 @@ public class SyncMetro extends SyncService {
         }
     }
 
-
     private void migrate(Map<String, String> metroMap, City city) {
         final Long docdocId = Long.parseLong(metroMap.get(MetroParams.id.key));
         final String name = metroMap.get(MetroParams.name.key);
