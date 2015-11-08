@@ -1,6 +1,6 @@
 package com.clinic.sync.diagnostic;
 
-enum DiagnosticParams {
+public enum DiagnosticParams {
 
     id("Id", "id"),
     name("Name", "Название города"),

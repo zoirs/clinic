@@ -2,7 +2,9 @@ package com.clinic.web.rest;
 
 import com.clinic.sync.area.SyncArea;
 import com.clinic.sync.city.SyncCity;
+import com.clinic.sync.clinic.SyncClinic;
 import com.clinic.sync.diagnostic.SyncDiagnostic;
+import com.clinic.sync.doctor.SyncDoctor;
 import com.clinic.sync.metro.SyncMetro;
 import com.clinic.sync.speciality.SyncSpeciality;
 import com.clinic.sync.street.SyncStreet;
@@ -39,6 +41,10 @@ public class SyncResource {
     SyncArea syncArea;
     @Autowired
     SyncDiagnostic syncDiagnostic;
+    @Autowired
+    SyncClinic syncClinic;
+    @Autowired
+    SyncDoctor syncDoctor;
 
     @RequestMapping(value = "/sync/{data}",
         method = RequestMethod.GET,
@@ -65,6 +71,23 @@ public class SyncResource {
             case "diagnostic":
                 syncDiagnostic.sync();
                 break;
+            case "clinic":
+                syncClinic.sync();
+                break;
+            case "doctor":
+                syncDoctor.sync();
+                break;
+            case "all": {
+                syncCity.sync();
+                syncMetro.sync();
+                syncStreet.sync();
+                syncSpeciality.sync();
+                syncArea.sync();
+                syncDiagnostic.sync();
+                syncClinic.sync();
+                syncDoctor.sync();
+                break;
+            }
         }
         return new ResponseEntity<>(HttpStatus.OK);
     }

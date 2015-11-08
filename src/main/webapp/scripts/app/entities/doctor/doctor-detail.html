@@ -1,0 +1,212 @@
+
+<div>
+    <h2><span>Doctor</span> {{doctor.id}}</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Field</th>
+                <th>Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <span>Fio4</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{doctor.fio}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Alias</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{doctor.alias}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Rating</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{doctor.rating}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>RatingInternal</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{doctor.ratingInternal}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>PriceFirst</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{doctor.priceFirst}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>PriceSpecial</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{doctor.priceSpecial}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Sex</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{doctor.sex}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Img</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{doctor.img}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>ReviewCount</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{doctor.reviewCount}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>TextAbout</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{doctor.textAbout}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>ExperiencaYear</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{doctor.experiencaYear}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Departure</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{doctor.departure}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Category</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{doctor.category}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Degree</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{doctor.degree}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Rank</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{doctor.rank}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Extra</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{doctor.extra}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>IsActive</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{doctor.isActive}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>DocdocId</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{doctor.docdocId}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>LastUpdated</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{doctor.lastUpdated}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>clinic</span>
+                </td>
+                <td>
+                    <span ng-repeat="clinic in doctor.clinics">
+                        <a class="form-control-static" ui-sref="clinic.detail({id: {{clinic.id}}})">{{clinic.id}}</a>{{$last ? '' : ', '}}
+                    <span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>speciality</span>
+                </td>
+                <td>
+                    <span ng-repeat="speciality in doctor.specialitys">
+                        <a class="form-control-static" ui-sref="speciality.detail({id: {{speciality.id}}})">{{speciality.id}}</a>{{$last ? '' : ', '}}
+                    <span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>metro</span>
+                </td>
+                <td>
+                    <span ng-repeat="metro in doctor.metros">
+                        <a class="form-control-static" ui-sref="metro.detail({id: {{metro.id}}})">{{metro.id}}</a>{{$last ? '' : ', '}}
+                    <span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>city</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="city.detail({id:doctor.city.id})">{{doctor.city.id}}</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+</div>

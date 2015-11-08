@@ -1,0 +1,143 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "clinic",
+            "otherEntityName": "clinic",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "speciality",
+            "otherEntityName": "speciality",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipId": 3,
+            "relationshipName": "metro",
+            "otherEntityName": "metro",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipId": 4,
+            "relationshipName": "city",
+            "otherEntityName": "city",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "fio",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "alias",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "rating",
+            "fieldType": "Float",
+            "fieldValidateRules": [
+                "min"
+            ],
+            "fieldValidateRulesMin": "0"
+        },
+        {
+            "fieldId": 4,
+            "fieldName": "ratingInternal",
+            "fieldType": "Float",
+            "fieldValidateRules": [
+                "min"
+            ],
+            "fieldValidateRulesMin": "0"
+        },
+        {
+            "fieldId": 5,
+            "fieldName": "priceFirst",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldId": 6,
+            "fieldName": "priceSpecial",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldId": 7,
+            "fieldName": "sex",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldId": 8,
+            "fieldName": "img",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 9,
+            "fieldName": "reviewCount",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldId": 10,
+            "fieldName": "textAbout",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 11,
+            "fieldName": "experiencaYear",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldId": 12,
+            "fieldName": "departure",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldId": 13,
+            "fieldName": "category",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 14,
+            "fieldName": "degree",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 15,
+            "fieldName": "rank",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 16,
+            "fieldName": "extra",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 17,
+            "fieldName": "isActive",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldId": 18,
+            "fieldName": "docdocId",
+            "fieldType": "Long"
+        },
+        {
+            "fieldId": 19,
+            "fieldName": "lastUpdated",
+            "fieldType": "DateTime"
+        }
+    ],
+    "changelogDate": "20151102174423",
+    "dto": "no",
+    "pagination": "pagination"
+}
