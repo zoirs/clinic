@@ -67,6 +67,8 @@ public class SyncClinic extends SyncService {
                 count = countAll - start;
             }
 
+            logger.info("город: " + city.getName() + ", c " + start + " " + count + "шт. " + DateTime.now());
+
             getPart(city, start, count);
             start += count;
         }
@@ -183,8 +185,8 @@ public class SyncClinic extends SyncService {
         clinic.setLatitude(Float.parseFloat(latitude));
         clinic.setStreet(street);
         clinic.setHouse(house);
-        clinic.setDescription(description.length() < 251 ? description : description.substring(0, 250));
-        clinic.setShortDescription(shortDescription.length() < 251 ? shortDescription : shortDescription.substring(0, 250));
+        clinic.setDescription(description);
+        clinic.setShortDescription(shortDescription);
         clinic.setIsDiagnostic("yes".equals(isDiagnostic));
         clinic.setIsClinic("yes".equals(isClinic));
         clinic.setIsDoctor("yes".equals(isDoctor));

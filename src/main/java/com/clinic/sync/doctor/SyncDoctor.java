@@ -61,6 +61,8 @@ public class SyncDoctor extends SyncService {
                 count = countAll - start;
             }
 
+            logger.info("город: " + city.getName() + ", c " + start + " " + count + "шт. " + DateTime.now());
+
             getPart(city, start, count);
             start += count;
         }

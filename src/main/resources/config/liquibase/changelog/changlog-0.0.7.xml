@@ -36,10 +36,10 @@
             <column name="latitude" type="${floatType}"/>
             <column name="street_name" type="varchar(255)"/>
             <column name="house" type="varchar(255)"/>
-            <column name="description" type="varchar(255)"/>
+            <column name="description" type="varchar(2255)"/>
             <column name="weekdays_open" type="varchar(255)"/>
             <column name="weekend_open" type="varchar(255)"/>
-            <column name="short_description" type="varchar(255)"/>
+            <column name="short_description" type="varchar(2255)"/>
             <column name="is_diagnostic" type="bit"/>
             <column name="is_clinic" type="bit"/>
             <column name="is_doctor" type="bit"/>
@@ -62,7 +62,7 @@
         </createTable>
         <dropDefaultValue tableName="clinic" columnName="last_updated" columnDataType="datetime"/>
 
-        
+
         <addForeignKeyConstraint baseColumnNames="city_id"
                                  baseTableName="clinic"
                                  constraintName="fk_clinic_city_id"
@@ -103,7 +103,7 @@
                                  constraintName="fk_diagnostic_diagnostic_clinic_id"
                                  referencedColumnNames="id"
                                  referencedTableName="diagnostic"/>
-        
+
         <createTable tableName="clinic_metro">
             <column name="metros_id" type="bigint">
                 <constraints nullable="false"/>
@@ -126,7 +126,7 @@
                                  constraintName="fk_metro_metro_clinic_id"
                                  referencedColumnNames="id"
                                  referencedTableName="metro"/>
-        
+
         <createTable tableName="clinic_speciality">
             <column name="specialitys_id" type="bigint">
                 <constraints nullable="false"/>
@@ -149,6 +149,6 @@
                                  constraintName="fk_speciality_speciality_clinic_id"
                                  referencedColumnNames="id"
                                  referencedTableName="speciality"/>
-        
+
     </changeSet>
 </databaseChangeLog>

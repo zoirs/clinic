@@ -48,7 +48,7 @@ abstract public class SyncService {
             currentAttemp++;
         }
         if (response != null && response.getStatusCode().value() == 200) {
-            System.out.println("response = " + response.getBody());
+//            System.out.println("response = " + response.getBody());
             result = new Gson().fromJson(response.getBody(), HashMap.class);
         }
         return result;
