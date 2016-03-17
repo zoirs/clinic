@@ -7,7 +7,6 @@ import com.clinic.repository.search.MetroSearchRepository;
 import com.clinic.web.rest.util.HeaderUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -83,7 +82,7 @@ public class MetroResource {
     @RequestMapping(value = "/metros",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    @Timed
+//    @Timed
     public List<Metro> getAllMetros() {
         log.debug("REST request to get all Metros");
         return metroRepository.findAll();

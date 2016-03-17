@@ -11,5 +11,6 @@ import java.util.Optional;
 public interface MetroRepository extends JpaRepository<Metro, Long> {
 
     Optional<Metro> findOneByDocdocId(Long docdocId);
+    Optional<Metro> findOneByAlias(String alias);
 
 }

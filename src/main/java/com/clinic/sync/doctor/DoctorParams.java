@@ -23,6 +23,7 @@ public enum DoctorParams {
     TextAssociation("TextAssociation", "Описание"),
     TextCourse("TextCourse", "Описание"),
     Img("Img", "фото"),
+    Metro("Stations", "Метро"),
 
     // входные:
     startFrom("start", "Начиная с какого порядкого номера вернуть список врачей"),

@@ -133,8 +133,9 @@ public class DoctorResource {
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public List<Doctor> searchDoctors(@PathVariable String query) {
-        return StreamSupport
-            .stream(doctorSearchRepository.search(queryString(query)).spliterator(), false)
-            .collect(Collectors.toList());
+        return null;
+//        return StreamSupport
+//            .stream(doctorSearchRepository.search(queryString(query)).spliterator(), false)
+//            .collect(Collectors.toList());
     }
 }

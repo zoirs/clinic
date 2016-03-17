@@ -3,10 +3,13 @@ package com.clinic.sync.doctor;
 import com.clinic.domain.City;
 import com.clinic.domain.Clinic;
 import com.clinic.domain.Doctor;
+import com.clinic.domain.Metro;
 import com.clinic.repository.CityRepository;
 import com.clinic.repository.ClinicRepository;
 import com.clinic.repository.DoctorRepository;
+import com.clinic.repository.MetroRepository;
 import com.clinic.sync.SyncService;
+import com.clinic.sync.metro.MetroParams;
 import com.google.common.collect.Sets;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
@@ -39,13 +42,17 @@ public class SyncDoctor extends SyncService {
     private DoctorRepository doctorRepository;
     @Autowired
     private ClinicRepository clinicRepository;
+    @Autowired
+    private MetroRepository metroRepository;
 
     public void sync() {
         logger.info("Синхронизация докторов. Начало: " + DateTime.now());
 
         List<City> cities = cityRepository.findAll();
         for (City city : cities) {
-            syncForCity(city);
+            if (city.getName().equals("Москва")){
+                syncForCity(city);
+            }
         }
 
         logger.info("Синхронизация докторов. Конец: " + DateTime.now());
@@ -112,7 +119,9 @@ public class SyncDoctor extends SyncService {
         final String extra = (String) doctorMap.get(DoctorParams.Extra.key);
 
         final List<Double> clinicIds = (List<Double>) doctorMap.get(DoctorParams.Clinics.key);   // Приходит id или массив исследований? нет в апи
-        // todo остальные поля
+        List<Map<String, Object>> metros = (List<Map<String, Object>>) doctorMap.get(DoctorParams.Metro.key);// Приходит id или массив исследований? нет в апи
+
+// todo остальные поля
 
         Set<Clinic> clinics = Sets.newHashSet();
         if (clinicIds != null) {
@@ -120,6 +129,17 @@ public class SyncDoctor extends SyncService {
                 Optional<Clinic> one = clinicRepository.findOneByDocdocId(clinic.longValue());
                 if (one.isPresent()) {
                     clinics.add(one.get());
+                }
+            }
+        }
+
+        Set<Metro> doctorsMetros = Sets.newHashSet();
+        if (metros != null) {
+            for (Map<String, Object> metro : metros) {
+                long metroId = Long.parseLong((String) metro.get(MetroParams.id.key));
+                Optional<Metro> doctorsMetro = metroRepository.findOneByDocdocId(metroId);
+                if (doctorsMetro.isPresent()) {
+                    doctorsMetros.add(doctorsMetro.get());
                 }
             }
         }
@@ -148,6 +168,7 @@ public class SyncDoctor extends SyncService {
         doctor.setRank(rank);
         doctor.setExtra(extra);
         doctor.setClinics(clinics);
+        doctor.setMetros(doctorsMetros);
 
         doctorRepository.save(doctor);
     }
