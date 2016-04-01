@@ -1,13 +1,42 @@
 <div ng-cloak>
     <div class="row">
+        <div class="col-xs-1 col-sm-1">
+            <h5>Я ищу:</h5>
+        </div>
 
+        <div class="col-xs-2 col-sm-2">
+            <select class="form-control"
+                    ng-model="params.type">
+                <option value="doctors">Доктора</option>
+                <option value="clinics">Клинику</option>
+            </select>
+        </div>
 
-        <select class="form-control" ng-model="params.metro" ng-options="metro.alias as metro.name for metro in metros">
-        </select>
+        <div class="col-xs-2 col-sm-2">
+            <select class="form-control"
+                    ng-model="params.speciality"
+                    ng-options="speciality.alias as speciality.nameGenitive for speciality in specialitys">
+                <option value="">Любая специализация</option>
+            </select>
+        </div>
 
-        <select class="form-control" ng-model="params.speciality" ng-options="speciality.alias as speciality.name for speciality in specialitys">
-        </select>
+        <div class="col-xs-1 col-sm-1">
+            <h5>у метро:</h5>
+        </div>
 
-        <a ng-click="find()">Найти</a>
+        <div class="col-xs-2 col-sm-2">
+            <select class="form-control"
+                    ng-model="params.metro"
+                    ng-options="metro.alias as metro.name for metro in metros">
+                <option value="">Любое метро</option>
+            </select>
+        </div>
+
+        <div class="col-xs-1 col-sm-1">
+            <button ui-sref="home.find({type:params.type, speciality:params.speciality, metro:params.speciality})" ng-disabled="!(params.metro && params.type && params.speciality)" class="btn btn-default">Показать</button>
+        </div>
     </div>
+
+    <div ui-view="dataTemplate" class="row"></div>
+
 </div>

@@ -1,0 +1,23 @@
+<h3 class="text-center">Специализации докторов</h3>
+<hr>
+<div style="margin-top: 50px">
+
+    <div class="spec-container">
+        <div class="spec-row1">
+            <p ng-repeat="s in specialitys[0]">
+                <a href="#/find/doctors/all/{{s.alias}}">{{s.name}}</a>
+            </p>
+        </div>
+        <div class="spec-row2">
+            <p ng-repeat="s in specialitys[2]">
+                <a href="#/find/doctors/all/{{s.alias}}">{{s.name}}</a>
+            </p>
+        </div>
+        <div class="spec-row3">
+            <p ng-repeat="s in specialitys[1]">
+                <a href="#/find/doctors/all/{{s.alias}}">{{s.name}}</a>
+            </p>
+        </div>
+    </div>
+
+</div>

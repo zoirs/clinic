@@ -1,0 +1,32 @@
+<hr>
+<div style="margin-top: 50px">
+    <div class="col-xs-3 col-sm-3">
+        <img style="width: 100%" src="{{clinic.imgFull}}">
+    </div>
+    <div class="col-xs-7 col-sm-7">
+
+        <h4>{{clinic.name}}</h4>
+
+        <br/>
+        <label>Специализации:</label>
+        <ul>
+            <li ng-repeat="speciality in clinic.specialitys">{{speciality.name}}</li>
+        </ul>
+        <br/>
+        <label>Ближайшие станции метро:</label>
+
+        <ul>
+            <li ng-repeat="metro in clinic.metros">{{metro.name}}</li>
+        </ul>
+        <br/>
+
+        <br/>
+        <label>Немного о клинике:</label>
+        <br/>
+        {{clinic.description}}
+
+        <br/>
+        <br/>
+        <button type="button" class="btn btn-success">Записаться</button>
+    </div>
+</div>

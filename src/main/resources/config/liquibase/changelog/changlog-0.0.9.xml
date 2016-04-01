@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="denis (generated)" id="1458924080269-1">
+        <createTable tableName="metro_nearest_metro">
+            <column name="metro_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nearest_metro_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addPrimaryKey columnNames="metro_id, nearest_metro_id"
+                       tableName="metro_nearest_metro"/>
+        <addForeignKeyConstraint baseColumnNames="nearest_metro_id"
+                                 baseTableName="metro_nearest_metro"
+                                 constraintName="FK_4vc5i7hjqx04pqkr08embh3yc"
+                                 deferrable="false"
+                                 initiallyDeferred="false"
+                                 referencedColumnNames="id"
+                                 referencedTableName="metro"/>
+        <addForeignKeyConstraint baseColumnNames="metro_id"
+                                 baseTableName="metro_nearest_metro"
+                                 constraintName="FK_a0jdq3ndrg1tptbk3pl0dgcep"
+                                 deferrable="false"
+                                 initiallyDeferred="false"
+                                 referencedColumnNames="id"
+                                 referencedTableName="metro"/>
+        <dropSequence sequenceName="area_id_seq"/>
+        <dropSequence sequenceName="city_id_seq"/>
+        <dropSequence sequenceName="clinic_id_seq"/>
+        <dropSequence sequenceName="diagnostic_id_seq"/>
+        <dropSequence sequenceName="doctor_id_seq"/>
+        <dropSequence sequenceName="jhi_persistent_audit_event_event_id_seq"/>
+        <dropSequence sequenceName="jhi_user_id_seq"/>
+        <dropSequence sequenceName="metro_id_seq"/>
+        <dropSequence sequenceName="speciality_id_seq"/>
+        <dropSequence sequenceName="street_id_seq"/>
+        <addNotNullConstraint columnDataType="timestamp"
+                              columnName="last_update"
+                              tableName="street"/>
+        <addNotNullConstraint columnDataType="timestamp"
+                              columnName="last_updated"
+                              tableName="area"/>
+        <addNotNullConstraint columnDataType="timestamp"
+                              columnName="last_updated"
+                              tableName="city"/>
+        <addNotNullConstraint columnDataType="timestamp"
+                              columnName="last_updated"
+                              tableName="diagnostic"/>
+        <addNotNullConstraint columnDataType="timestamp"
+                              columnName="last_updated"
+                              tableName="metro"/>
+        <addNotNullConstraint columnDataType="timestamp"
+                              columnName="last_updated"
+                              tableName="speciality"/>
+    </changeSet>
+</databaseChangeLog>

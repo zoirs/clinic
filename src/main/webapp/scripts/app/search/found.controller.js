@@ -4,30 +4,40 @@ angular.module('clinicApp')
     .controller('FoundController', function ($scope, $state, Principal, ParseLinks, $stateParams, Find) {
 
         console.log('================FoundController==================');
+        console.log('$stateParams', $stateParams);
 
-        $scope.found = [];
+        $scope.doctors = [];
+        $scope.clinics = [];
+
         $scope.page = 0;
 
-        $scope.loadAll = function() {
+        $scope.loadAll = function () {
+            $scope.$parent.params = angular.copy($state.params);
+
             Find.query({
-                page: $scope.page, size: 20,
-                type: $stateParams.type,
-                metro: $stateParams.metro,
-                speciality: $stateParams.speciality
+                page: $scope.page, size: 10,
+                type: $state.params.type,
+                metro: $state.params.metro,
+                speciality: $state.params.speciality
             }, function (result, headers) {
                 $scope.links = ParseLinks.parse(headers('link'));
-                $scope.found = result;
+                if ($scope.params.type == 'doctors') {
+                    $scope.clinics = [];
+                    $scope.doctors = result;
+                }
+                if ($scope.params.type == 'clinics') {
+                    $scope.doctors = [];
+                    $scope.clinics = result;
+                }
             });
         };
 
-        $scope.loadPage = function(page) {
+        $scope.loadPage = function (page) {
             $scope.page = page;
             $scope.loadAll();
         };
 
         $scope.loadAll();
-
-
 
         Principal.identity().then(function (account) {
             $scope.account = account;

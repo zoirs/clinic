@@ -13,5 +13,6 @@
     <include file="classpath:config/liquibase/changelog/changlog-0.0.6.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/changlog-0.0.7.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/changlog-0.0.8.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/changlog-0.0.9.xml" relativeToChangelogFile="false"/>
     <!-- JHipster will add liquibase changelogs here -->
 </databaseChangeLog>

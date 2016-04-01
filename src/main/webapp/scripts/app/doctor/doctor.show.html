@@ -1,0 +1,33 @@
+<hr>
+<div style="margin-top: 50px">
+    <div class="col-xs-3 col-sm-3">
+        <img style="width: 100%" src="{{doctor.imgFull}}">
+    </div>
+    <div class="col-xs-7 col-sm-7">
+
+        <h4>{{doctor.fio}} <span class="label label-info">Рейтинг: {{doctor.ratingInternal}}</span></h4>
+
+        <br/>
+        <label>Специализации:</label>
+        <ul>
+            <li ng-repeat="speciality in doctor.specialitys">{{speciality.name}}</li>
+        </ul>
+        <br/>
+        <label>Ближайшие станции метро:</label>
+
+        <ul>
+            <li ng-repeat="metro in doctor.metros">{{metro.name}}</li>
+        </ul>
+        <br/>
+
+        <p>Цена первичного приема: <label>{{doctor.priceFirst}} р.</label></p>
+        <br/>
+        <label>Немного о враче:</label>
+        <br/>
+        {{doctor.textAbout}}
+
+        <br/>
+        <br/>
+        <button type="button" class="btn btn-success">Записаться</button>
+    </div>
+</div>

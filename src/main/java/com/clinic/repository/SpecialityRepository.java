@@ -1,5 +1,6 @@
 package com.clinic.repository;
 
+import com.clinic.domain.Metro;
 import com.clinic.domain.Speciality;
 import com.clinic.domain.Street;
 import org.springframework.data.jpa.repository.*;
@@ -14,4 +15,7 @@ public interface SpecialityRepository extends JpaRepository<Speciality,Long> {
 
     Optional<Speciality> findOneByDocdocId(Long docdocId);
 
+    Optional<Speciality> findOneByAlias(String speciality);
+
+    List<Speciality> findAllByOrderByNameAsc();
 }

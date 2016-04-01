@@ -6,6 +6,7 @@ import com.clinic.sync.clinic.SyncClinic;
 import com.clinic.sync.diagnostic.SyncDiagnostic;
 import com.clinic.sync.doctor.SyncDoctor;
 import com.clinic.sync.metro.SyncMetro;
+import com.clinic.sync.metro.SyncNearestMetro;
 import com.clinic.sync.speciality.SyncSpeciality;
 import com.clinic.sync.street.SyncStreet;
 import com.codahale.metrics.annotation.Timed;
@@ -34,6 +35,8 @@ public class SyncResource {
     @Autowired
     SyncMetro syncMetro;
     @Autowired
+    SyncNearestMetro syncNearestMetro;
+    @Autowired
     SyncStreet syncStreet;
     @Autowired
     SyncSpeciality syncSpeciality;
@@ -59,6 +62,9 @@ public class SyncResource {
             case "metro":
                 syncMetro.sync();
                 break;
+            case "nearestMetro":
+                syncNearestMetro.sync();
+                break;
             case "street":
                 syncStreet.sync();
                 break;
@@ -80,6 +86,7 @@ public class SyncResource {
             case "all": {
                 syncCity.sync();
                 syncMetro.sync();
+                syncNearestMetro.sync();
                 syncStreet.sync();
                 syncSpeciality.sync();
                 syncArea.sync();

@@ -4,6 +4,6 @@ angular.module('clinicApp')
 
 .constant('ENV', 'dev')
 
-.constant('VERSION', '0.0.1-SNAPSHOT')
+.constant('VERSION', '0.1.0-SNAPSHOT')
 
 ;

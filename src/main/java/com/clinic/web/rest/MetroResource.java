@@ -85,7 +85,7 @@ public class MetroResource {
 //    @Timed
     public List<Metro> getAllMetros() {
         log.debug("REST request to get all Metros");
-        return metroRepository.findAll();
+        return metroRepository.findByCity_alias("msk");
     }
 
     /**

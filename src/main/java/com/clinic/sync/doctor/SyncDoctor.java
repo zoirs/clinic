@@ -1,13 +1,7 @@
 package com.clinic.sync.doctor;
 
-import com.clinic.domain.City;
-import com.clinic.domain.Clinic;
-import com.clinic.domain.Doctor;
-import com.clinic.domain.Metro;
-import com.clinic.repository.CityRepository;
-import com.clinic.repository.ClinicRepository;
-import com.clinic.repository.DoctorRepository;
-import com.clinic.repository.MetroRepository;
+import com.clinic.domain.*;
+import com.clinic.repository.*;
 import com.clinic.sync.SyncService;
 import com.clinic.sync.metro.MetroParams;
 import com.google.common.collect.Sets;
@@ -44,6 +38,8 @@ public class SyncDoctor extends SyncService {
     private ClinicRepository clinicRepository;
     @Autowired
     private MetroRepository metroRepository;
+    @Autowired
+    private SpecialityRepository specialityRepository;
 
     public void sync() {
         logger.info("Синхронизация докторов. Начало: " + DateTime.now());
@@ -120,6 +116,7 @@ public class SyncDoctor extends SyncService {
 
         final List<Double> clinicIds = (List<Double>) doctorMap.get(DoctorParams.Clinics.key);   // Приходит id или массив исследований? нет в апи
         List<Map<String, Object>> metros = (List<Map<String, Object>>) doctorMap.get(DoctorParams.Metro.key);// Приходит id или массив исследований? нет в апи
+        List<Map<String, Object>> specialities = (List<Map<String, Object>>) doctorMap.get(DoctorParams.Specialities.key);// Приходит id или массив исследований? нет в апи
 
 // todo остальные поля
 
@@ -140,6 +137,17 @@ public class SyncDoctor extends SyncService {
                 Optional<Metro> doctorsMetro = metroRepository.findOneByDocdocId(metroId);
                 if (doctorsMetro.isPresent()) {
                     doctorsMetros.add(doctorsMetro.get());
+                }
+            }
+        }
+
+        Set<Speciality> doctorsSpecialities = Sets.newHashSet();
+        if (specialities != null) {
+            for (Map<String, Object> speciality : specialities) {
+                long specialityId = Long.parseLong((String) speciality.get(MetroParams.id.key));
+                Optional<Speciality> doctorsSpeciality = specialityRepository.findOneByDocdocId(specialityId);
+                if (doctorsSpeciality.isPresent()) {
+                    doctorsSpecialities.add(doctorsSpeciality.get());
                 }
             }
         }
@@ -169,6 +177,7 @@ public class SyncDoctor extends SyncService {
         doctor.setExtra(extra);
         doctor.setClinics(clinics);
         doctor.setMetros(doctorsMetros);
+        doctor.setSpecialitys(doctorsSpecialities);
 
         doctorRepository.save(doctor);
     }

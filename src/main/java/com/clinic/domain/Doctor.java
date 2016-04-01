@@ -100,14 +100,14 @@ public class Doctor implements Serializable {
                inverseJoinColumns = @JoinColumn(name="clinics_id", referencedColumnName="ID"))
     private Set<Clinic> clinics = new HashSet<>();
 
-    @ManyToMany
+    @ManyToMany(fetch=FetchType.EAGER) //todo переделать на lazy, при необходимости брать с помощью join fetch
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JoinTable(name = "doctor_speciality",
                joinColumns = @JoinColumn(name="doctors_id", referencedColumnName="ID"),
                inverseJoinColumns = @JoinColumn(name="specialitys_id", referencedColumnName="ID"))
     private Set<Speciality> specialitys = new HashSet<>();
 
-    @ManyToMany
+    @ManyToMany(fetch=FetchType.EAGER) //todo переделать на lazy, при необходимости брать с помощью join fetch
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JoinTable(name = "doctor_metro",
                joinColumns = @JoinColumn(name="doctors_id", referencedColumnName="ID"),

@@ -85,7 +85,7 @@ public class SpecialityResource {
 //    @Timed
     public List<Speciality> getAllSpecialitys() {
         log.debug("REST request to get all Specialitys");
-        return specialityRepository.findAll();
+        return specialityRepository.findAllByOrderByNameAsc();
     }
 
     /**

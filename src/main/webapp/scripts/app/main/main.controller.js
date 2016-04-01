@@ -1,13 +1,19 @@
 'use strict';
 
 angular.module('clinicApp')
-    .controller('MainController', function ($scope, $state, Principal, Metro, Speciality) {
-        console.log('==================================');
+    .controller('MainController', function ($scope, $state, $stateParams, Principal, Metro, Speciality) {
+        console.log('==============MainController====================');
+        console.log('$state.params', $state.params);
+        console.log('$stateParams', $stateParams);
+
+        //$scope.params = $state.params;
+        $scope.params = angular.copy($state.params);
+
         Principal.identity().then(function (account) {
             $scope.account = account;
             $scope.isAuthenticated = Principal.isAuthenticated;
         });
-
+        $scope.metros = [];
         $scope.loadAllMetros = function () {
             Metro.query(function (result) {
                 $scope.metros = result;
@@ -21,20 +27,17 @@ angular.module('clinicApp')
             });
         };
 
-        $scope.params = {
-            type: 'doctors',
-            metro: null,
-            speciality: null
-        };
-
-        $scope.find = function () {
-            console.log($scope.params);
-            $state.go('find', $scope.params);
-        };
-
-
         $scope.loadAllMetros();
 
         $scope.loadAllSpecialitys();
 
+        if (!$scope.params.metro) {
+            $scope.params.metro = 'all';
+        }
+        if (!$scope.params.speciality) {
+            $scope.params.speciality = 'all';
+        }
+        if (!$scope.params.type) {
+            $scope.params.type = 'doctors';
+        }
     });

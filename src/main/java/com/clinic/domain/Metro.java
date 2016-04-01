@@ -31,25 +31,25 @@ public class Metro implements Serializable {
     private Long id;
 
 
-    @NotNull        
+    @NotNull
     @Column(name = "name", nullable = false)
     private String name;
 
-    @NotNull        
+    @NotNull
     @Column(name = "alias", nullable = false)
     private String alias;
 
-    @NotNull        
+    @NotNull
     @Column(name = "line_name", nullable = false)
     private String lineName;
 
-    @NotNull        
+    @NotNull
     @Column(name = "line_color", nullable = false)
     private String lineColor;
-    
+
     @Column(name = "docdoc_id")
     private Long docdocId;
-    
+
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     @JsonSerialize(using = CustomDateTimeSerializer.class)
     @JsonDeserialize(using = CustomDateTimeDeserializer.class)
@@ -58,6 +58,13 @@ public class Metro implements Serializable {
 
     @ManyToOne
     private City city;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JoinTable(name = "metro_nearest_metro",
+        joinColumns = @JoinColumn(name="metro_id", referencedColumnName="ID"),
+        inverseJoinColumns = @JoinColumn(name="nearest_metro_id", referencedColumnName="ID"))
+    private Set<Metro> nearest = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -121,6 +128,14 @@ public class Metro implements Serializable {
 
     public void setCity(City city) {
         this.city = city;
+    }
+
+    public Set<Metro> getNearest() {
+        return nearest;
+    }
+
+    public void setNearest(Set<Metro> nearest) {
+        this.nearest = nearest;
     }
 
     @Override

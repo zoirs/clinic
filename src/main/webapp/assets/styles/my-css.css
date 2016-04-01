@@ -1,0 +1,55 @@
+/*поиск врачей*/
+
+.found-block {
+    /*height: 155px;*/
+    /*margin: 59px;*/
+    /*display: table-row;*/
+    border-top: 1px solid #ddd;
+}
+
+.found-block:hover {
+    background-color: #e5e5e5;
+}
+
+.found-photo {
+    margin-top: 10px;
+    width: 130px; /* Ширина слоя */
+    padding: 0 10px; /* Отступы вокруг текста */
+    float: left; /* Обтекание по правому краю */
+    /*height: 200px;*/
+    /*line-height: 200px;*/
+    text-align: center;
+}
+
+.found-photo img {
+    max-width: 100%;
+    max-height: 100%;
+    /*vertical-align: middle;*/
+}
+
+.found-data {
+    margin-left: 140px; /* Отступ слева */
+    padding: 10px; /* Поля вокруг текста */
+}
+
+/*список специальностей на главной*/
+
+.spec-container {
+    width: 95%;
+    margin: 0 auto; /* Выравнивание по центру */
+    text-align: center;
+}
+
+.spec-row1 {
+    width: 27%; /* Ширина левой колонки */
+    float: left;
+}
+
+.spec-row2 {
+    width: 34%; /* Ширина правой колонки */
+    float: right;
+}
+
+.spec-row3 {
+    margin: 0 30% 0 30%;
+}

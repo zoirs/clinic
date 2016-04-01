@@ -1,19 +1,79 @@
-<div ng-repeat="doctor in found">
+<hr>
+<div style="margin-top: 50px">
 
-    {{doctor.fio}}
-    <img src="{{doctor.img}}">
+    <div ng-if="params.type == 'clinics' && clinics" ng-repeat="clinic in clinics" class="found-block col-xs-7 col-sm-7">
+        <div class="found-photo">
+            <img src="{{clinic.logoPath}}">
+        </div>
+        <div class="found-data">
+            <h4><a ui-sref="home.clinic_show({id:clinic.id, name:clinic.alias})">{{clinic.name}}</a></h4>
+            <br/>
+            <img src="assets/images/speciality.png"/>
+            <a ui-sref="home.find({speciality:speciality.alias})" ng-repeat="speciality in clinic.specialitys"> {{speciality.name}}
+                <any ng-show="!$last">,</any>
+            </a> <br/>
+            <img src="assets/images/metro.png"/>
+            <a ui-sref="home.find({metro:metro.alias})" ng-repeat="metro in clinic.metros"> {{metro.name}}
+                <any ng-show="!$last">,</any>
+            </a>
+            <br/>
+            <br/>
+            <div class="row">
+                <div class="col-xs-9 col-sm-9" style="margin-top: 9px">
+                    <span class="label label-info">Рейтинг: {{clinic.ratingInternal}}</span>
+
+                </div>
+                <div class="col-xs-1 col-sm-1">
+                    <button type="button" class="btn btn-success">Записаться</button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div ng-if="params.type == 'doctors' && doctors" ng-repeat="doctor in doctors" class="found-block col-xs-7 col-sm-7">
+        <div class="found-photo">
+            <img src="{{doctor.img}}">
+        </div>
+        <div class="found-data">
+            <h4><a ui-sref="home.doctor_show({id:doctor.id, name:doctor.alias})">{{doctor.fio}}</a></h4>
+            <br/>
+            <img src="assets/images/speciality.png"/>
+            <a ui-sref="home.find({speciality:speciality.alias})" ng-repeat="speciality in doctor.specialitys"> {{speciality.name}}
+                <any ng-show="!$last">,</any>
+            </a> <br/>
+            <img src="assets/images/metro.png"/>
+            <a ui-sref="home.find({metro:metro.alias})" ng-repeat="metro in doctor.metros"> {{metro.name}}
+                <any ng-show="!$last">,</any>
+            </a>
+            <br/>
+            <br/>
+            <div class="row">
+                <div class="col-xs-9 col-sm-9" style="margin-top: 9px">
+                    <span class="label label-info">Рейтинг: {{doctor.ratingInternal}}</span>
+
+                </div>
+                <div class="col-xs-1 col-sm-1">
+                    <button type="button" class="btn btn-success">Записаться</button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <nav>
+        <ul class="pagination col-xs-8 col-sm-8">
+            <li ng-show="links['first'] >= 0" ng-click="loadPage(links['first'])"><a>&lt;&lt;</a></li>
+            <li ng-show="page > 0" ng-click="loadPage(links['prev'] || 0)"><a>&lt;</a></li>
+            <li ng-show="page > 1" ng-click="loadPage(page - 2)"><a>{{page - 1}}</a></li>
+            <li ng-show="page > 0" ng-click="loadPage(page - 1)"><a>{{page}}</a></li>
+            <li class="active"><a>{{page + 1}}</a></li>
+            <li ng-show="page < links['last']" ng-click="loadPage(page + 1)"><a>{{page + 2}}</a></li>
+            <li ng-show="page < links['last'] - 1" ng-click="loadPage(page + 2)"><a>{{page + 3}}</a></li>
+            <li ng-show="links['next']" ng-click="loadPage(links['next'])"><a>&gt;</a></li>
+            <li ng-show="links['last'] > 0" ng-click="loadPage(links['last'])"><a>&gt;&gt;</a></li>
+        </ul>
+    </nav>
 </div>
-
-<nav>
-    <ul class="pagination">
-        <li ng-show="links['first'] >= 0" ng-click="loadPage(links['first'])"><a>&lt;&lt;</a></li>
-        <li ng-show="page > 0" ng-click="loadPage(links['prev'] || 0)"><a>&lt;</a></li>
-        <li ng-show="page > 1" ng-click="loadPage(page - 2)"><a>{{page - 1}}</a></li>
-        <li ng-show="page > 0" ng-click="loadPage(page - 1)"><a>{{page}}</a></li>
-        <li class="active"><a>{{page + 1}}</a></li>
-        <li ng-show="page < links['last']" ng-click="loadPage(page + 1)"><a>{{page + 2}}</a></li>
-        <li ng-show="page < links['last'] - 1" ng-click="loadPage(page + 2)"><a>{{page + 3}}</a></li>
-        <li ng-show="links['next']" ng-click="loadPage(links['next'])"><a>&gt;</a></li>
-        <li ng-show="links['last'] > 0" ng-click="loadPage(links['last'])"><a>&gt;&gt;</a></li>
-    </ul>
-</nav>

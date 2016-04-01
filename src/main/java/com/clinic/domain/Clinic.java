@@ -32,85 +32,85 @@ public class Clinic implements Serializable {
     private Long id;
 
 
-    @NotNull        
+    @NotNull
     @Column(name = "name", nullable = false)
     private String name;
 
-    @NotNull        
+    @NotNull
     @Column(name = "short_name", nullable = false)
     private String shortName;
 
-    @NotNull        
+    @NotNull
     @Column(name = "alias", nullable = false)
     private String alias;
-    
+
     @Column(name = "url")
     private String url;
-    
+
     @Column(name = "longitude")
     private Float longitude;
-    
+
     @Column(name = "latitude")
     private Float latitude;
-    
+
     @Column(name = "street_name")
     private String streetName;
-    
+
     @Column(name = "house")
     private String house;
-    
+
     @Column(name = "description")
     private String description;
-    
+
     @Column(name = "weekdays_open")
     private String weekdaysOpen;
-    
+
     @Column(name = "weekend_open")
     private String weekendOpen;
-    
+
     @Column(name = "short_description")
     private String shortDescription;
-    
+
     @Column(name = "is_diagnostic")
     private Boolean isDiagnostic;
-    
+
     @Column(name = "is_clinic")
     private Boolean isClinic;
-    
+
     @Column(name = "is_doctor")
     private Boolean isDoctor;
-    
+
     @Column(name = "phone_contact")
     private String phoneContact;
-    
+
     @Column(name = "phone_appointmen")
     private String phoneAppointmen;
-    
+
     @Column(name = "phone_replacement")
     private String phoneReplacement;
-    
+
     @Column(name = "logo_path")
     private String logoPath;
-    
+
     @Column(name = "logo")
     private String logo;
-    
+
     @Column(name = "schedule_state_online")
     private Boolean scheduleStateOnline;
-    
+
     @Column(name = "email")
     private String email;
-    
+
     @Column(name = "min_price", precision=10, scale=2, nullable = false)
     private BigDecimal minPrice;
-    
+
     @Column(name = "max_price", precision=10, scale=2, nullable = false)
     private BigDecimal maxPrice;
-    
+
     @Column(name = "docdoc_id")
     private Long docdocId;
 
-    @NotNull        
+    @NotNull
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     @JsonSerialize(using = CustomDateTimeSerializer.class)
     @JsonDeserialize(using = CustomDateTimeDeserializer.class)
@@ -133,14 +133,14 @@ public class Clinic implements Serializable {
                inverseJoinColumns = @JoinColumn(name="diagnostics_id", referencedColumnName="ID"))
     private Set<Diagnostic> diagnostics = new HashSet<>();
 
-    @ManyToMany
+    @ManyToMany(fetch=FetchType.EAGER) //todo переделать на lazy, при необходимости брать с помощью join fetch
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JoinTable(name = "clinic_metro",
                joinColumns = @JoinColumn(name="clinics_id", referencedColumnName="ID"),
                inverseJoinColumns = @JoinColumn(name="metros_id", referencedColumnName="ID"))
     private Set<Metro> metros = new HashSet<>();
 
-    @ManyToMany
+    @ManyToMany(fetch=FetchType.EAGER) //todo переделать на lazy, при необходимости брать с помощью join fetch
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JoinTable(name = "clinic_speciality",
                joinColumns = @JoinColumn(name="clinics_id", referencedColumnName="ID"),
