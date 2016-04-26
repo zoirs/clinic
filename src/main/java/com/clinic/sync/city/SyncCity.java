@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -20,7 +21,7 @@ import java.util.concurrent.Future;
 import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 
 @Service
-public class SyncCity extends SyncService {
+public class SyncCity extends SyncService { //todo внутри все статическое, наследоваться необязательно
 
     private final static Logger logger = LoggerFactory.getLogger(SyncCity.class);
     private final static String url = "https://back.docdoc.ru/api/rest/1.0.5/json/city/";
@@ -63,7 +64,7 @@ public class SyncCity extends SyncService {
         city.setName(name);
         city.setAlias(alias);
         city.setDocdocId(docdocId);
-        city.setLastUpdated(DateTime.now());
+        city.setLastUpdated(ZonedDateTime.now());
         city.setLatitude(isNotEmpty(latitude) ? Float.parseFloat(latitude) : null);
         city.setLongitude(isNotEmpty(longitude) ? Float.parseFloat(longitude) : null);
 

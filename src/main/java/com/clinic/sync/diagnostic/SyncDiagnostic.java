@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -72,7 +73,7 @@ public class SyncDiagnostic extends SyncService {
         diagnostic.setAlias(alias);
         diagnostic.setDiagnostic(parent);
         diagnostic.setDocdocId(docdocId);
-        diagnostic.setLastUpdated(DateTime.now());
+        diagnostic.setLastUpdated(ZonedDateTime.now());
 
         return diagnosticRepository.save(diagnostic);
     }

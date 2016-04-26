@@ -1,18 +1,18 @@
 package com.clinic.domain;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.clinic.domain.util.CustomDateTimeDeserializer;
-import com.clinic.domain.util.CustomDateTimeSerializer;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.annotations.Type;
-import org.joda.time.DateTime;
 import org.springframework.data.elasticsearch.annotations.Document;
 
-import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.time.ZonedDateTime;
 import java.util.Objects;
 
 /**
@@ -29,31 +29,28 @@ public class Speciality implements Serializable {
     private Long id;
 
 
-    @NotNull        
+    @NotNull
     @Column(name = "name", nullable = false)
     private String name;
 
-    @NotNull        
+    @NotNull
     @Column(name = "alias", nullable = false)
     private String alias;
-    
+
     @Column(name = "name_genitive")
     private String nameGenitive;
-    
+
     @Column(name = "name_plural")
     private String namePlural;
-    
+
     @Column(name = "name_plural_genitive")
     private String namePluralGenitive;
-    
+
     @Column(name = "docdoc_id")
     private Long docdocId;
-    
-    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-    @JsonSerialize(using = CustomDateTimeSerializer.class)
-    @JsonDeserialize(using = CustomDateTimeDeserializer.class)
+
     @Column(name = "last_updated", nullable = false)
-    private DateTime lastUpdated;
+    private ZonedDateTime lastUpdated;
 
     public Long getId() {
         return id;
@@ -111,11 +108,11 @@ public class Speciality implements Serializable {
         this.docdocId = docdocId;
     }
 
-    public DateTime getLastUpdated() {
+    public ZonedDateTime getLastUpdated() {
         return lastUpdated;
     }
 
-    public void setLastUpdated(DateTime lastUpdated) {
+    public void setLastUpdated(ZonedDateTime lastUpdated) {
         this.lastUpdated = lastUpdated;
     }
 

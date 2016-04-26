@@ -5,7 +5,7 @@ import com.clinic.config.audit.AuditEventConverter;
 import com.clinic.domain.PersistentAuditEvent;
 import com.clinic.repository.PersistenceAuditEventRepository;
 import com.clinic.service.AuditEventService;
-import org.joda.time.LocalDateTime;
+import java.time.LocalDateTime;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

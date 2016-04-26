@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -160,7 +161,7 @@ public class SyncDoctor extends SyncService {
         doctor.setAlias(alias);
         doctor.setCity(city);
         doctor.setDocdocId(docdocId);
-        doctor.setLastUpdated(DateTime.now());
+        doctor.setLastUpdated(ZonedDateTime.now());
         doctor.setRating(Float.parseFloat(rating));
         doctor.setRatingInternal(Float.parseFloat(internalRating));
         doctor.setPriceFirst(price);

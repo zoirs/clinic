@@ -28,6 +28,9 @@
 
         <br/>
         <br/>
-        <button type="button" class="btn btn-success">Записаться</button>
+        <!--<make-appointmen-doctor doctorid="{{doctor.id}}"></make-appointmen-doctor>-->
+        <make-appointmen ng-if="doctor" width='400px' height='60%' doctorid="{{doctor.id}}" name="{{doctor.fio}}" clinicid="{{doctor.clinics[0].id}}" type="doctor"></make-appointmen>
     </div>
 </div>
+
+

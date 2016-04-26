@@ -6,9 +6,8 @@ import com.clinic.config.JHipsterProperties;
 import java.util.Date;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.*;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StopWatch;
 import springfox.documentation.service.ApiInfo;
@@ -27,7 +26,7 @@ import static springfox.documentation.builders.PathSelectors.regex;
  */
 @Configuration
 @EnableSwagger2
-@Profile("!"+Constants.SPRING_PROFILE_PRODUCTION)
+@Profile("!" + Constants.SPRING_PROFILE_PRODUCTION)
 public class SwaggerConfiguration {
 
     private final Logger log = LoggerFactory.getLogger(SwaggerConfiguration.class);
@@ -38,6 +37,7 @@ public class SwaggerConfiguration {
      * Swagger Springfox configuration.
      */
     @Bean
+    @Profile("!" + Constants.SPRING_PROFILE_FAST)
     public Docket swaggerSpringfoxDocket(JHipsterProperties jHipsterProperties) {
         log.debug("Starting Swagger");
         StopWatch watch = new StopWatch();
@@ -56,9 +56,7 @@ public class SwaggerConfiguration {
             .genericModelSubstitutes(ResponseEntity.class)
             .forCodeGeneration(true)
             .genericModelSubstitutes(ResponseEntity.class)
-            .directModelSubstitute(org.joda.time.LocalDate.class, String.class)
-            .directModelSubstitute(org.joda.time.LocalDateTime.class, Date.class)
-            .directModelSubstitute(org.joda.time.DateTime.class, Date.class)
+            .ignoredParameterTypes(Pageable.class)
             .directModelSubstitute(java.time.LocalDate.class, String.class)
             .directModelSubstitute(java.time.ZonedDateTime.class, Date.class)
             .directModelSubstitute(java.time.LocalDateTime.class, Date.class)

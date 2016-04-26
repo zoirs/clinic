@@ -40,7 +40,7 @@ public class SyncNearestMetro extends SyncService {
 
         List<Metro> metros = metroRepository.findAll();
         for (Metro metro : metros) {
-            syncForMetro(metro);
+            syncForMetro(metroRepository.findByAliasWithNearest(metro.getAlias()).get(0));
         }
 
         logger.info("Синхронизация ближайших метро. Конец: " + DateTime.now());

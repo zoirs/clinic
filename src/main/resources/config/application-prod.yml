@@ -13,12 +13,17 @@
 spring:
     profiles:
         active: prod
+    devtools:
+        restart:
+            enabled: false
+        livereload:
+            enabled: false
     datasource:
         driver-class-name: org.postgresql.ds.PGSimpleDataSource
-        url:
-        name: clinic
-        username: clinic
-        password:
+        url: jdbc:postgresql://localhost:5432/clinic9273696706
+        name: clinic9273696706
+        username: clinic9273696706
+        password: clinic9273696706
     jpa:
         database-platform: com.clinic.domain.util.FixedPostgreSQL82Dialect
         database: POSTGRESQL
@@ -32,6 +37,11 @@ spring:
         elasticsearch:
             cluster-name:
             cluster-nodes: localhost:9300
+    mail:
+        host: localhost
+        port: 25
+        username:
+        password:
     thymeleaf:
         cache: true
 
@@ -40,6 +50,9 @@ liquibase:
 
 server:
     port: 8080
+    compression:
+        enabled: true
+        mime-types: text/html,text/xml,text/plain,text/css, application/javascript, application/json
 
 # ===================================================================
 # JHipster specific properties
@@ -49,12 +62,12 @@ jhipster:
     http:
         cache: # Used by the CachingHttpHeadersFilter
             timeToLiveInDays: 31
-    datasource: # JHipster-specific configuration, in addition to the standard spring.datasource properties
-        serverName: localhost
     cache: # Hibernate 2nd level cache, used by CacheConfiguration
         timeToLiveSeconds: 3600
         ehcache:
             maxBytesLocalHeap: 256M
+    mail: # specific JHipster mail property, for standard properties see MailProperties
+        from: clinic@localhost
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx.enabled: true
         spark:

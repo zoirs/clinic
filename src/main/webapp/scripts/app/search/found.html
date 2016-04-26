@@ -3,10 +3,10 @@
 
     <div ng-if="params.type == 'clinics' && clinics" ng-repeat="clinic in clinics" class="found-block col-xs-7 col-sm-7">
         <div class="found-photo">
-            <img src="{{clinic.logoPath}}">
+            <img src="https://s.docdoc.ru/img/clinic/logo/{{clinic.docdocId}}.jpg">
         </div>
         <div class="found-data">
-            <h4><a ui-sref="home.clinic_show({id:clinic.id, name:clinic.alias})">{{clinic.name}}</a></h4>
+            <h4><a ui-sref="home.clinic_show({id:clinic.id, name:clinic.shortName})">{{clinic.name}}</a></h4>
             <br/>
             <img src="assets/images/speciality.png"/>
             <a ui-sref="home.find({speciality:speciality.alias})" ng-repeat="speciality in clinic.specialitys"> {{speciality.name}}
@@ -24,7 +24,9 @@
 
                 </div>
                 <div class="col-xs-1 col-sm-1">
-                    <button type="button" class="btn btn-success">Записаться</button>
+                    <!--<button type="button" class="btn btn-success">Записаться</button>-->
+                    <make-appointmen width='400px' height='60%' clinicid="{{clinic.id}}" name="{{clinic.name}}" type="clinic" specialitys="specialitys"></make-appointmen>
+
                 </div>
 
             </div>
@@ -55,7 +57,7 @@
 
                 </div>
                 <div class="col-xs-1 col-sm-1">
-                    <button type="button" class="btn btn-success">Записаться</button>
+                    <make-appointmen width='400px' height='60%' doctorid="{{doctor.id}}" name="{{doctor.fio}}" type="doctor" clinicid="{{doctor.clinics[0].id}}"></make-appointmen>
                 </div>
 
             </div>

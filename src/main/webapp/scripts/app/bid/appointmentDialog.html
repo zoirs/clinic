@@ -1,0 +1,48 @@
+<div class='ng-modal' ng-show='show'>
+    <div class='ng-modal-overlay' ng-click='hideModal()'></div>
+    <div class='ng-modal-dialog' ng-style='dialogStyle'>
+        <div class='ng-modal-close' ng-click='hideModal()'>X</div>
+        <div class='ng-modal-dialog-content'>
+
+            <br>
+                {{show}}
+            <form role="form" ng-submit="sendRequest()" ng-show="createAppointmen">
+                <div class="form-group" ng-if="type=='doctor'">
+                    <label for="fio">Ваши фио</label>
+                    <input type="text" name="name" class="form-control" id="fio" ng-model="fio" placeholder="ФИО пациента">
+                </div>
+                <div class="form-group" ng-if="type=='doctor'">
+                    <label for="name">Врач</label>
+                    <input type="text" class="form-control" disabled id="name" ng-model="name">
+                    <!--<input type="hidden" name="doctor" value="{{appointmen.id}}">-->
+                    <!--<input type="hidden" name="clinic" value="{{appointmen.clinic}}">-->
+                </div>
+                <div class="form-group" ng-if="type == 'clinic'">
+                    <label for="name">Клиника</label>
+                    <input type="text" class="form-control" disabled id="clinic" value="{{name}}">
+                    <input type="hidden" name="clinic" value="{{clinicid}}">
+                </div>
+                <div class="form-group" ng-if="type == 'clinic'">
+                    <label for="name">Специальность</label>
+                    <select class="form-control"
+                            ng-model="speciality"
+                            name="speciality"
+                            ng-options="speciality.id as speciality.nameGenitive for speciality in specialitys">
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Телефон</label>
+                    <input type="tel" name="phone" class="form-control" id="phone" ng-model="phone" placeholder="Ваш номер телефона">
+                </div>
+                <div class="form-group">
+                    <label for="comment">Коментарий</label>
+                    <textarea id="comment" class="form-control" ng-model="comment" placeholder="По желанию, можете описать причину записи тут"></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-default">Записаться</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

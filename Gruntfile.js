@@ -1,4 +1,4 @@
-// Generated on 2015-10-13 using generator-jhipster 2.22.0
+// Generated on 2016-04-01 using generator-jhipster 2.27.0
 'use strict';
 var fs = require('fs');
 
@@ -8,7 +8,13 @@ var parseVersionFromPomXml = function() {
     var version;
     var pomXml = fs.readFileSync('pom.xml', "utf8");
     parseString(pomXml, function (err, result){
-        version = result.project.version[0];
+        if (result.project.version && result.project.version[0]) {
+            version = result.project.version[0];
+        } else if (result.project.parent && result.project.parent[0] && result.project.parent[0].version && result.project.parent[0].version[0]) {
+            version = result.project.parent[0].version[0]
+        } else {
+            throw new Error('pom.xml is malformed. No version is defined');
+        }
     });
     return version;
 };
@@ -59,7 +65,7 @@ module.exports = function (grunt) {
                     /angular-i18n/, // localizations are loaded dynamically
                     'bower_components/bootstrap/' // Exclude Bootstrap LESS as we use bootstrap-sass
                 ],
-                ignorePath: /\.\.\/webapp\/bower_components\// // remove ../webapp/bower_components/ from paths of injected sass files 
+                ignorePath: /\.\.\/webapp\/bower_components\// // remove ../webapp/bower_components/ from paths of injected sass files
             },
             test: {
                 src: 'src/test/javascript/karma.conf.js',
@@ -94,7 +100,12 @@ module.exports = function (grunt) {
             },
             options: {
                 watchTask: true,
-                proxy: "localhost:8080"
+                proxy: {
+                    target: "localhost:8080",
+                    proxyOptions: {
+                        xfwd: true
+                    }
+                }
             }
         },
         clean: {
@@ -156,7 +167,7 @@ module.exports = function (grunt) {
             }
         },
         useminPrepare: {
-            html: 'src/main/webapp/**/*.html',
+            html: 'src/main/webapp/index.html',
             options: {
                 dest: '<%= yeoman.dist %>',
                 flow: {
@@ -275,14 +286,6 @@ module.exports = function (grunt) {
                         'generated/*'
                     ]
                 }]
-            },
-            generateOpenshiftDirectory: {
-                    expand: true,
-                    dest: 'deploy/openshift',
-                    src: [
-                        'pom.xml',
-                        'src/main/**'
-                ]
             }
         },
         karma: {
@@ -307,13 +310,6 @@ module.exports = function (grunt) {
                 push: false,
                 connectCommits: false,
                 message: 'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%'
-            },
-            openshift: {
-                options: {
-                    dir: 'deploy/openshift',
-                    remote: 'openshift',
-                    branch: 'master'
-                }
             }
         },
         ngconstant: {
@@ -361,9 +357,9 @@ module.exports = function (grunt) {
         'clean:server',
         'wiredep:test',
         'ngconstant:dev',
-        'sass:server',
-        'karma'
+        'sass:server'
     ]);
+    //todo return karma task
 
     grunt.registerTask('build', [
         'clean:dist',
@@ -386,35 +382,6 @@ module.exports = function (grunt) {
         'htmlmin'
     ]);
 
-	grunt.registerTask('appendSkipBower', 'Force skip of bower for Gradle', function () {
-
-		if (!grunt.file.exists(filepath)) {
-			// Assume this is a maven project
-			return true;
-		}
-
-		var fileContent = grunt.file.read(filepath);
-		var skipBowerIndex = fileContent.indexOf("skipBower=true");
-
-		if (skipBowerIndex != -1) {
-			return true;
-		}
-
-		grunt.file.write(filepath, fileContent + "\nskipBower=true\n");
-	});
-
-    grunt.registerTask('buildOpenshift', [
-        'test',
-        'build',
-        'copy:generateOpenshiftDirectory',
-    ]);
-
-    grunt.registerTask('deployOpenshift', [
-        'test',
-        'build',
-        'copy:generateOpenshiftDirectory',
-        'buildcontrol:openshift'
-    ]);
 
     grunt.registerTask('default', ['serve']);
 };

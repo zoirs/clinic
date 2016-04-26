@@ -1,7 +1,7 @@
 <hr>
 <div style="margin-top: 50px">
     <div class="col-xs-3 col-sm-3">
-        <img style="width: 100%" src="{{clinic.imgFull}}">
+        <img style="width: 100%" src="https://s.docdoc.ru/img/clinic/logo/{{clinic.docdocId}}.jpg">
     </div>
     <div class="col-xs-7 col-sm-7">
 
@@ -27,6 +27,8 @@
 
         <br/>
         <br/>
-        <button type="button" class="btn btn-success">Записаться</button>
+
+        <make-appointmen ng-if="clinic" width='400px' height='60%' name="{{clinic.name}}" type="clinic" clinicid="{{clinic.id}}" specialitys="specialitys"></make-appointmen>
+
     </div>
 </div>

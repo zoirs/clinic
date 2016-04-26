@@ -28,6 +28,10 @@ import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
+
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -46,7 +50,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @IntegrationTest
 public class MetroResourceTest {
 
-    private static final DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
+    private static final java.time.format.DateTimeFormatter dateTimeFormatter = java.time.format.DateTimeFormatter.ISO_OFFSET_DATE_TIME.withZone(ZoneId.of("Z"));
 
     private static final String DEFAULT_NAME = "AAAAA";
     private static final String UPDATED_NAME = "BBBBB";
@@ -60,9 +64,9 @@ public class MetroResourceTest {
     private static final Long DEFAULT_DOCDOC_ID = 1L;
     private static final Long UPDATED_DOCDOC_ID = 2L;
 
-    private static final DateTime DEFAULT_LAST_UPDATED = new DateTime(0L, DateTimeZone.UTC);
-    private static final DateTime UPDATED_LAST_UPDATED = new DateTime(DateTimeZone.UTC).withMillisOfSecond(0);
-    private static final String DEFAULT_LAST_UPDATED_STR = dateTimeFormatter.print(DEFAULT_LAST_UPDATED);
+    private static final ZonedDateTime DEFAULT_LAST_UPDATED = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneId.systemDefault());
+    private static final ZonedDateTime UPDATED_LAST_UPDATED = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
+    private static final String DEFAULT_LAST_UPDATED_STR = dateTimeFormatter.format(DEFAULT_LAST_UPDATED);
 
     @Inject
     private MetroRepository metroRepository;
@@ -123,7 +127,7 @@ public class MetroResourceTest {
         assertThat(testMetro.getLineName()).isEqualTo(DEFAULT_LINE_NAME);
         assertThat(testMetro.getLineColor()).isEqualTo(DEFAULT_LINE_COLOR);
         assertThat(testMetro.getDocdocId()).isEqualTo(DEFAULT_DOCDOC_ID);
-        assertThat(testMetro.getLastUpdated().toDateTime(DateTimeZone.UTC)).isEqualTo(DEFAULT_LAST_UPDATED);
+        assertThat(testMetro.getLastUpdated()).isEqualTo(DEFAULT_LAST_UPDATED);
     }
 
     @Test
@@ -274,7 +278,7 @@ public class MetroResourceTest {
         assertThat(testMetro.getLineName()).isEqualTo(UPDATED_LINE_NAME);
         assertThat(testMetro.getLineColor()).isEqualTo(UPDATED_LINE_COLOR);
         assertThat(testMetro.getDocdocId()).isEqualTo(UPDATED_DOCDOC_ID);
-        assertThat(testMetro.getLastUpdated().toDateTime(DateTimeZone.UTC)).isEqualTo(UPDATED_LAST_UPDATED);
+        assertThat(testMetro.getLastUpdated()).isEqualTo(UPDATED_LAST_UPDATED);
     }
 
     @Test

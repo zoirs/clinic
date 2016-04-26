@@ -1,13 +1,8 @@
 package com.clinic.domain;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.clinic.domain.util.CustomDateTimeDeserializer;
-import com.clinic.domain.util.CustomDateTimeSerializer;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.annotations.Type;
-import org.joda.time.DateTime;
+import java.time.ZonedDateTime;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.*;
@@ -23,13 +18,12 @@ import java.util.Objects;
 @Entity
 @Table(name = "doctor")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Document(indexName="doctor")
+@Document(indexName = "doctor")
 public class Doctor implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
 
     @Column(name = "fio")
     private String fio;
@@ -87,11 +81,8 @@ public class Doctor implements Serializable {
     @Column(name = "docdoc_id")
     private Long docdocId;
 
-    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-    @JsonSerialize(using = CustomDateTimeSerializer.class)
-    @JsonDeserialize(using = CustomDateTimeDeserializer.class)
     @Column(name = "last_updated")
-    private DateTime lastUpdated;
+    private ZonedDateTime lastUpdated;
 
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -269,11 +260,11 @@ public class Doctor implements Serializable {
         this.docdocId = docdocId;
     }
 
-    public DateTime getLastUpdated() {
+    public ZonedDateTime getLastUpdated() {
         return lastUpdated;
     }
 
-    public void setLastUpdated(DateTime lastUpdated) {
+    public void setLastUpdated(ZonedDateTime lastUpdated) {
         this.lastUpdated = lastUpdated;
     }
 
@@ -317,12 +308,11 @@ public class Doctor implements Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-
         Doctor doctor = (Doctor) o;
-
-        if ( ! Objects.equals(id, doctor.id)) return false;
-
-        return true;
+        if(doctor.id == null || id == null) {
+            return false;
+        }
+        return Objects.equals(id, doctor.id);
     }
 
     @Override
@@ -333,26 +323,26 @@ public class Doctor implements Serializable {
     @Override
     public String toString() {
         return "Doctor{" +
-                "id=" + id +
-                ", fio='" + fio + "'" +
-                ", alias='" + alias + "'" +
-                ", rating='" + rating + "'" +
-                ", ratingInternal='" + ratingInternal + "'" +
-                ", priceFirst='" + priceFirst + "'" +
-                ", priceSpecial='" + priceSpecial + "'" +
-                ", sex='" + sex + "'" +
-                ", img='" + img + "'" +
-                ", reviewCount='" + reviewCount + "'" +
-                ", textAbout='" + textAbout + "'" +
-                ", experiencaYear='" + experiencaYear + "'" +
-                ", departure='" + departure + "'" +
-                ", category='" + category + "'" +
-                ", degree='" + degree + "'" +
-                ", rank='" + rank + "'" +
-                ", extra='" + extra + "'" +
-                ", isActive='" + isActive + "'" +
-                ", docdocId='" + docdocId + "'" +
-                ", lastUpdated='" + lastUpdated + "'" +
-                '}';
+            "id=" + id +
+            ", fio='" + fio + "'" +
+            ", alias='" + alias + "'" +
+            ", rating='" + rating + "'" +
+            ", ratingInternal='" + ratingInternal + "'" +
+            ", priceFirst='" + priceFirst + "'" +
+            ", priceSpecial='" + priceSpecial + "'" +
+            ", sex='" + sex + "'" +
+            ", img='" + img + "'" +
+            ", reviewCount='" + reviewCount + "'" +
+            ", textAbout='" + textAbout + "'" +
+            ", experiencaYear='" + experiencaYear + "'" +
+            ", departure='" + departure + "'" +
+            ", category='" + category + "'" +
+            ", degree='" + degree + "'" +
+            ", rank='" + rank + "'" +
+            ", extra='" + extra + "'" +
+            ", isActive='" + isActive + "'" +
+            ", docdocId='" + docdocId + "'" +
+            ", lastUpdated='" + lastUpdated + "'" +
+            '}';
     }
 }

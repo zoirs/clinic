@@ -1,0 +1,10 @@
+<div>
+    <button class="btn btn-default" ng-click='toggleModal()'>Записаться {{modalShown}}</button>
+    <make-appointmen-dialog show='modalShown'
+                            doctorid="{{doctorid}}"
+                            name="{{name}}"
+                            type="{{type}}"
+                            clinicid="{{clinicid}}"
+                            specialitys="specialitys">
+    </make-appointmen-dialog>
+</div>

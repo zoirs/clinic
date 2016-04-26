@@ -2,7 +2,7 @@ package com.clinic.repository;
 
 import com.clinic.domain.PersistentToken;
 import com.clinic.domain.User;
-import org.joda.time.LocalDate;
+import java.time.LocalDate;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

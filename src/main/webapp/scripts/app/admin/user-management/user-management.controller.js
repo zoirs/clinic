@@ -1,14 +1,18 @@
 'use strict';
 
 angular.module('clinicApp')
-    .controller('UserManagementController', function ($scope, User, ParseLinks) {
+    .controller('UserManagementController', function ($scope, Principal, User, ParseLinks) {
         $scope.users = [];
         $scope.authorities = ["ROLE_USER", "ROLE_ADMIN"];
-
-        $scope.page = 0;
+		
+		Principal.identity().then(function(account) {
+            $scope.currentAccount = account;
+        });
+        $scope.page = 1;
         $scope.loadAll = function () {
-            User.query({page: $scope.page, per_page: 20}, function (result, headers) {
+            User.query({page: $scope.page - 1, size: 20}, function (result, headers) {
                 $scope.links = ParseLinks.parse(headers('link'));
+                $scope.totalItems = headers('X-Total-Count');
                 $scope.users = result;
             });
         };
@@ -25,26 +29,6 @@ angular.module('clinicApp')
                 $scope.loadAll();
                 $scope.clear();
             });
-        };
-
-        $scope.showUpdate = function (login) {
-            User.get({login: login}, function (result) {
-                $scope.user = result;
-                $('#saveUserModal').modal('show');
-            });
-        };
-
-        $scope.save = function () {
-            User.update($scope.user,
-                function () {
-                    $scope.refresh();
-                });
-        };
-
-        $scope.refresh = function () {
-            $scope.loadAll();
-            $('#saveUserModal').modal('hide');
-            $scope.clear();
         };
 
         $scope.clear = function () {

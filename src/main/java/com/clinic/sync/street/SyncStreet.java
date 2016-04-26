@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -74,7 +75,7 @@ public class SyncStreet extends SyncService {
         street.setAlias(alias);
         street.setCity(city);
         street.setDocdocId(docdocId);
-        street.setLastUpdate(DateTime.now());
+        street.setLastUpdate(ZonedDateTime.now());
 
         streetRepository.save(street);
     }

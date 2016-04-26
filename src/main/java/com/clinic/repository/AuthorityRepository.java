@@ -1,6 +1,7 @@
 package com.clinic.repository;
 
 import com.clinic.domain.Authority;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

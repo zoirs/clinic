@@ -2,14 +2,14 @@
 
 angular.module('clinicApp')
     .controller('DoctorShowController', function ($scope, $state, entity, Doctor) {
+         //setTimeout(function(){console.log('================ DoctorController ==================');
 
-        console.log('================ DoctorController ==================');
-
-        entity.$promise.then(function (doctor) {
-            $scope.doctor = doctor;
-            var q = $scope.doctor.img;
-            $scope.doctor.imgFull = q.substring(0, q.indexOf('_small')) + q.substring(q.indexOf('_small') + 6);
-        });
+             entity.$promise.then(function (doctor) {
+                 $scope.doctor = doctor;
+                 var q = $scope.doctor.img;
+                 $scope.doctor.imgFull = q.substring(0, q.indexOf('_small')) + q.substring(q.indexOf('_small') + 6);
+             });
+         //},2000);
 
 
     });
