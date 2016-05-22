@@ -5,43 +5,46 @@
         <div class='ng-modal-dialog-content'>
 
             <br>
-                {{show}}
             <form role="form" ng-submit="sendRequest()" ng-show="createAppointmen">
-                <div class="form-group" ng-if="type=='doctor'">
+                <div class="form-group">
                     <label for="fio">Ваши фио</label>
-                    <input type="text" name="name" class="form-control" id="fio" ng-model="fio" placeholder="ФИО пациента">
+                    <input type="text" name="name" class="form-control" id="fio" ng-model="appointmen.fio" placeholder="ФИО пациента">
                 </div>
                 <div class="form-group" ng-if="type=='doctor'">
                     <label for="name">Врач</label>
-                    <input type="text" class="form-control" disabled id="name" ng-model="name">
+                    <input type="text" class="form-control" disabled id="name" ng-model="appointmen.name">
                     <!--<input type="hidden" name="doctor" value="{{appointmen.id}}">-->
                     <!--<input type="hidden" name="clinic" value="{{appointmen.clinic}}">-->
                 </div>
                 <div class="form-group" ng-if="type == 'clinic'">
                     <label for="name">Клиника</label>
-                    <input type="text" class="form-control" disabled id="clinic" value="{{name}}">
-                    <input type="hidden" name="clinic" value="{{clinicid}}">
+                    <input type="text" class="form-control" disabled id="clinic" value="{{name}}" ng-model="appointmen.name">
+                    <!--<input type="text" name="clinic" value="{{clinicid}}">-->
                 </div>
                 <div class="form-group" ng-if="type == 'clinic'">
                     <label for="name">Специальность</label>
                     <select class="form-control"
-                            ng-model="speciality"
+                            ng-model="appointmen.speciality"
                             name="speciality"
                             ng-options="speciality.id as speciality.nameGenitive for speciality in specialitys">
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="phone">Телефон</label>
-                    <input type="tel" name="phone" class="form-control" id="phone" ng-model="phone" placeholder="Ваш номер телефона">
+                    <input type="tel" name="phone" class="form-control" id="phone" ng-model="appointmen.phone" placeholder="Ваш номер телефона">
                 </div>
                 <div class="form-group">
                     <label for="comment">Коментарий</label>
-                    <textarea id="comment" class="form-control" ng-model="comment" placeholder="По желанию, можете описать причину записи тут"></textarea>
+                    <textarea id="comment" class="form-control" ng-model="appointmen.comment" placeholder="По желанию, можете описать причину записи тут"></textarea>
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-default">Записаться</button>
                 </div>
             </form>
+
+            <div ng-show="!createAppointmen">
+                <label>{{createAppointmenMessage}}</label>
+            </div>
 
         </div>
     </div>

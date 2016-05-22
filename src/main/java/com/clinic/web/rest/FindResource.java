@@ -68,6 +68,15 @@ public class FindResource {
             page = doctorRepository.findByMetrosAndSpecialities(metros, specialities, pageable);
         }
 
+        // todo убрать, и написать нормальные запросы
+        for (Doctor doctor : page.getContent()) {
+            List<Long> clinicId = doctorRepository.findClinicId(doctor.getId());
+            if (!clinicId.isEmpty()) {
+                doctor.setClinicId(clinicId.get(0));
+            }
+        }
+
+
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/find/doctors/" + metro + "/" + speciality);
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

@@ -25,19 +25,35 @@ module
 
                 $scope.createAppointmen = true;
 
+                $scope.appointmen = {
+                    clinicid: $scope.clinicid,
+                    fio: "",
+                    name: $scope.name,
+                    phone: "",
+                    type: $scope.type,
+                    speciality: "",
+                    comment: "",
+                    doctorid: $scope.doctorid
+                };
+
                 $scope.loadAllSpecialitys = function () {
                     Speciality.query(function (result) {
                         $scope.specialitys = result;
                     });
                 };
                 $scope.sendRequest = function () {
+
                     console.log($scope.appointmen);
 
-                    $http.post('/api/createappointmen/', $scope.appointmen)
+
+                    $http.post('/api/createappointmen', $scope.appointmen)
                         .then(function (response) {
                             $scope.createAppointmen = false;
 
-                            //console.log(response);
+                            $scope.createAppointmenMessage = "Вам перезвонят в течении 15 минут";
+                        }, function (response) {
+                            $scope.createAppointmen = false;
+                            $scope.createAppointmenMessage = "Не удалось создать запись к врачу";
                         });
                 }
             },

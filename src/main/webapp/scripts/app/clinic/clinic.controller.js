@@ -5,14 +5,8 @@ angular.module('clinicApp')
 
         console.log('================ ClinicController ==================');
 
-        $scope.clinic = entity;
-
-        $scope.load = function (id) {
-            Clinic.get({id: id}, function(result) {
-                $scope.clinic = result;
-            });
-        };
-
-
+        entity.$promise.then(function (clinic) {
+            $scope.clinic = clinic;
+        });
 
     });

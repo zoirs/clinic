@@ -108,6 +108,8 @@ public class Doctor implements Serializable {
     @ManyToOne
     private City city;
 
+    private transient Long clinicId;
+
     public Long getId() {
         return id;
     }
@@ -344,5 +346,13 @@ public class Doctor implements Serializable {
             ", docdocId='" + docdocId + "'" +
             ", lastUpdated='" + lastUpdated + "'" +
             '}';
+    }
+
+    public Long getClinicId() {
+        return clinicId;
+    }
+
+    public void setClinicId(Long clinicId) {
+        this.clinicId = clinicId;
     }
 }

@@ -32,6 +32,9 @@ public interface DoctorRepository extends JpaRepository<Doctor,Long> {
     @Query("SELECT d FROM Doctor d INNER JOIN d.metros m where m in (?1)")
     Page<Doctor> findByMetros(Collection<Metro> metros, Pageable pageable);
 
+    @Query("SELECT c.id FROM Doctor d INNER JOIN d.clinics c where d.id = :id")
+    List<Long> findClinicId(@Param("id") Long id);
+
     // todo сделать вьюшки для вытягиваемых объектов типа (SELECT c.name, c.capital.name FROM Country c)
     @Query("SELECT d FROM Doctor d INNER JOIN d.specialitys s where s in (?1)")
     Page<Doctor> findBySpecialities(Collection<Speciality> specialities, Pageable pageable);

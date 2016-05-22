@@ -1,26 +1,9 @@
 package com.clinic.domain;
 
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.springframework.data.elasticsearch.annotations.Document;
+import com.clinic.sync.appointment.AppointmentParams;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.validation.constraints.Min;
 import java.io.Serializable;
-import java.time.ZonedDateTime;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 
 //@Entity
@@ -29,7 +12,8 @@ import java.util.Set;
 //@Document(indexName = "doctor")
 public class Apointmen implements Serializable {
 
-    private Long clinicid;
+    private String clinicid;
+    private String doctorid;
     private String fio;
     private String name;
     private String phone;
@@ -38,10 +22,29 @@ public class Apointmen implements Serializable {
     private Long speciality;
     private String comment;
 
+    public Map<String, Object> toParams() {
+        Map<String, Object> param = new HashMap<>();
+
+        param.put(AppointmentParams.name.nameParam, fio);
+        param.put(AppointmentParams.phone.nameParam, phone);
+        param.put(AppointmentParams.clinic.nameParam, clinicid);
+        param.put(AppointmentParams.comment.nameParam, comment);
+
+        if (type.equals("doctor")) {
+            param.put(AppointmentParams.doctor.nameParam, doctorid);
+        } else {
+            param.put(AppointmentParams.speciality.nameParam, speciality);
+
+        }
+
+        return param;
+    }
+
     @Override
     public String toString() {
         return "Apointmen{" +
             "clinicid=" + clinicid +
+            ", doctorid=" + doctorid +
             ", fio='" + fio + '\'' +
             ", name='" + name + '\'' +
             ", phone='" + phone + '\'' +
@@ -52,11 +55,11 @@ public class Apointmen implements Serializable {
             '}';
     }
 
-    public Long getClinicid() {
+    public String getClinicid() {
         return clinicid;
     }
 
-    public void setClinicid(Long clinicid) {
+    public void setClinicid(String clinicid) {
         this.clinicid = clinicid;
     }
 
@@ -106,5 +109,21 @@ public class Apointmen implements Serializable {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public String getDoctorid() {
+        return doctorid;
+    }
+
+    public void setDoctorid(String doctorid) {
+        this.doctorid = doctorid;
+    }
+
+    public Long getSpeciality() {
+        return speciality;
+    }
+
+    public void setSpeciality(Long speciality) {
+        this.speciality = speciality;
     }
 }
